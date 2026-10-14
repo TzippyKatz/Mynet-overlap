@@ -11,8 +11,6 @@ const start = async (): Promise<void> => {
     const PostModel = createPostModel();
     const UserModel = createUserModel();
 
-    console.log("[MongoDB] Post model created successfully");
-
     await disconnectDB();
 };
 

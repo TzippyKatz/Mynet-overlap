@@ -11,7 +11,8 @@ export const createUserModel = (): Model<User & Document> => {
             username: {
                 type: String,
                 required: true,
-                uniqe: true,
+                unique: true,
+                index: true,
             },
             displayedName: {
                 type: String,

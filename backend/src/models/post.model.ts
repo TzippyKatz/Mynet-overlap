@@ -15,6 +15,7 @@ export const createPostModel = (): Model<Post & Document> => {
       postName: {
         type: String,
         required: true,
+        index: true,
       },
       userId: {
         type: Schema.Types.ObjectId,
