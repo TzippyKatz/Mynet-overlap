@@ -17,10 +17,7 @@
   "bugs": {
     "url": "https://github.com/TzippyKatz/Mynet-overlap/issues"
   },
-  "homepage": "https://github.com/TzippyKatz/Mynet-overlap#readme",
   "dependencies": {
-    "dotenv": "^18.0.7",
-    "express": "^5.3.0",
     "mongoose": "^9.11.2"
   },
   "devDependencies": {

@@ -1,11 +1,9 @@
-import { config } from "dotenv";
 import { connect, disconnect, set } from "mongoose";
-import "dotenv/config";
-
+import { config } from "./config.js";
 
 export const initDB = async (): Promise<void> => {
     set("strictQuery", true);
-    await connect(process.env.MONGO_URI);
+    await connect(config.mongoUri);
     console.log("[MongoDB] connected successfully");
 };
 
