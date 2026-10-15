@@ -1,20 +1,18 @@
-import type { Connection, Document, Model } from "mongoose";
-import { Schema } from "mongoose";
-import type { User } from "../../libs/Types/user.type.js";
+import { type Document, Schema } from "mongoose";
+import type { User } from "../../../../libs/src/Types/user/user.type.js";
+import { userServiceConnection } from "../database.js";
 
-export const createUserModel = (connection: Connection): Model<User & Document> => {
-  const userSchema = new Schema({
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      index: true,
-    },
-    displayedName: {
-      type: String,
-      required: true,
-    },
-  });
+const userSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    index: true,
+  },
+  displayedName: {
+    type: String,
+    required: true,
+  },
+});
 
-  return connection.model<User & Document>("users", userSchema);
-};
+export const userModel = userServiceConnection.model<User & Document>( "users",  userSchema);
