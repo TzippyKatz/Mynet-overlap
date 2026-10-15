@@ -5,6 +5,6 @@ export type Post = {
   userId: Schema.Types.ObjectId;
   text: string;
   media?: string;
-  likes: number;
+  likes?: number;
   createdAt: Date;
 };
