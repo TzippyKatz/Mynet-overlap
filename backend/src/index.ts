@@ -1,6 +1,4 @@
-import { error } from "console";
 import { initDB } from "./config/connection.js";
-import mongoose from "mongoose";
 
 const start = async (): Promise<void> => {
   await initDB();
