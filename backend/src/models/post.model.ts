@@ -1,11 +1,13 @@
 import { type Document, model, Schema } from "mongoose";
 
+const MAX_TEXT_LENGTH = 200;
+
 export type Post = {
   postName: string;
   userId: Schema.Types.ObjectId;
-  text: String;
-  media?: String;
-  likes: Number;
+  text: string;
+  media?: string;
+  likes?: number;
   createdAt: Date;
 };
 
@@ -24,7 +26,7 @@ const postSchema = new Schema(
     text: {
       type: String,
       required: true,
-      MaxLength: 200,
+      maxlength: MAX_TEXT_LENGTH,
     },
     media: {
       type: String,
