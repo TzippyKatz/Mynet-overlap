@@ -1,12 +1,11 @@
+import { error } from "console";
 import { initDB } from "./config/connection.js";
 import mongoose from "mongoose";
 
 const start = async (): Promise<void> => {
-    await initDB();
-
-    console.log("Database:", mongoose.connection.name);
+  await initDB();
 };
 
-start().catch((err) => {
-    console.error("Error starting the application:", err);
+start().catch((error) => {
+  console.error("Error starting the application:", error);
 });
