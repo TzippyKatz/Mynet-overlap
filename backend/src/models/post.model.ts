@@ -1,6 +1,5 @@
 import { type Document, model, Schema } from "mongoose";
-
-const MAX_TEXT_LENGTH = 200;
+import { MAX_TEXT_LENGTH } from "../../libs/consts.js";
 
 export type Post = {
   postName: string;
@@ -31,7 +30,7 @@ const postSchema = new Schema(
     media: {
       type: String,
       validate: {
-        validator: (val: string) => /^https?:\/\/.+/.test(val),
+        validator: (value: string) => /^https?:\/\/.+/.test(value),
         message: "media must be a valid URL",
       },
     },

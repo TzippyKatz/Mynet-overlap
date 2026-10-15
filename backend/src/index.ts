@@ -1,4 +1,4 @@
-import { initDB, disconnectDB } from "./config/connection.js";
+import { initDB } from "./config/connection.js";
 import mongoose from "mongoose";
 
 const start = async (): Promise<void> => {
@@ -9,5 +9,4 @@ const start = async (): Promise<void> => {
 
 start().catch((err) => {
     console.error("Error starting the application:", err);
-    process.exit(1);
 });
