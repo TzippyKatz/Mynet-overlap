@@ -1,5 +1,5 @@
 {
-  "name": "overlap",
+  "name": "mynet-overlap",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,7 +18,6 @@
     "url": "https://github.com/TzippyKatz/Mynet-overlap/issues"
   },
   "dependencies": {
-    "config": "^5.0.1",
     "dotenv": "^18.0.8",
     "mongoose": "^9.11.2"
   },
