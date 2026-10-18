@@ -2,6 +2,7 @@ import { Router } from "express";
 import type { createPostController } from "./post.controller.js";
 import {
   validateCreatePost,
+  validatePostId,
   validateUpdatePost,
 } from "./post.validator.js";
 
@@ -14,15 +15,16 @@ export const createPostRouter = (
 
   postRouter.get("/", postController.getAllPosts);
 
-  postRouter.get("/:id", postController.getPostById);
+  postRouter.get("/:id", validatePostId, postController.getPostById);
 
   postRouter.put(
     "/:id",
+    validatePostId,
     validateUpdatePost,
     postController.updatePost,
   );
 
-  postRouter.delete("/:id", postController.deletePost);
+  postRouter.delete("/:id", validatePostId, postController.deletePost);
 
   return postRouter;
 };

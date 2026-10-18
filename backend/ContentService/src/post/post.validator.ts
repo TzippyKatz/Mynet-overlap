@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { MAX_TEXT_LENGTH } from "../../../../libs/src/consts.js";
+import { Types } from "mongoose";
 
 export const validateCreatePost = (
   req: Request,
@@ -50,4 +51,19 @@ export const validateUpdatePost = (
         message:
           "Post fields must be valid strings. Text must not exceed the maximum length, and media must be a valid URL if provided.",
       });
+};
+
+export const validatePostId = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
+  const { id } = req.params;
+
+  if (typeof id !== "string" || !Types.ObjectId.isValid(id)) {
+    res.status(400).json({ message: "Invalid post ID" });
+    return;
+  }
+
+  next();
 };

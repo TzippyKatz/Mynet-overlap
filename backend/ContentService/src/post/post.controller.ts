@@ -47,6 +47,10 @@ export const createPostController = (
     return postManager
       .getPostById(id)
       .then((post) => {
+        if (!post) {
+          res.status(404).json({ message: "Post not found" });
+          return;
+        }
         res.status(200).json(post);
       })
       .catch(next);
@@ -84,7 +88,7 @@ export const createPostController = (
       res.status(400).json({ message: "Invalid post ID" });
       return Promise.resolve();
     }
-    
+
     return postManager
       .deletePost(id)
       .then((post) => {
