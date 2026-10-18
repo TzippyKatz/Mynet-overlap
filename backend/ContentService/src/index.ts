@@ -6,6 +6,7 @@ import { createPostManager } from "./post/post.manager.js";
 import { createPostController } from "./post/post.controller.js";
 import { createPostRouter } from "./post/post.router.js";
 import { config } from "./config.js";
+import { createUserRPCService } from "./post/user.rpc.client.js";
 
 const app = express();
 
@@ -15,7 +16,8 @@ const startServer = async (): Promise<void> => {
   await connectContentServiceDatabase();
 
   const postRepository = createPostRepository(postModel);
-  const postManager = createPostManager(postRepository);
+  const userRPCService = createUserRPCService();
+  const postManager = createPostManager(postRepository, userRPCService);
   const postController = createPostController(postManager);
   const postRouter = createPostRouter(postController);
 

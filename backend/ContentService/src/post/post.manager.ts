@@ -1,7 +1,9 @@
 import { createPostRepository } from "./post.repository.js";
+import type { UserRPCService } from "../../../../libs/src/Types/rpc/rpc.type.js";
 
 export const createPostManager = (
   postRepository: ReturnType<typeof createPostRepository>,
+  userRPCService: UserRPCService,
 ) => {
   const createPost = async (
     userId: string,
@@ -9,6 +11,12 @@ export const createPostManager = (
     text: string,
     media?: string,
   ) => {
+    const user = await userRPCService.getUserById(userId);
+
+    if (!user) {
+      throw new Error(`User with id ${userId} does not exist`);
+    }
+
     return postRepository.createPost({
       userId,
       postName,
@@ -21,7 +29,7 @@ export const createPostManager = (
     return postRepository.getAllPosts();
   };
 
-  const getPostById = async (id: string ) => {
+  const getPostById = async (id: string) => {
     return postRepository.getPostById(id);
   };
 
