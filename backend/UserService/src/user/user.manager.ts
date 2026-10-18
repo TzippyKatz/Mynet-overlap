@@ -14,8 +14,13 @@ export const createUserManager = (
         return userRepository.getAllUsers();
     };
 
+    const getUserById = async (id: string) => {
+        return userRepository.getUserById(id);
+    };
+
     return {
         createUser,
         getAllUsers,
+        getUserById,
     };
 };

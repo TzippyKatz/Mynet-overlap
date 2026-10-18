@@ -13,8 +13,13 @@ export const createUserRepository = (userModel: Model<User & Document>) => {
         return userModel.find();
     };
 
+    const getUserById = async (id: string) => {
+        return userModel.findById(id);
+    };
+
     return {
         createUser,
         getAllUsers,
+        getUserById,
     };
 };
