@@ -11,5 +11,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "../../libs/src/**/*.d.ts"]
+  "include": ["src/**/*.ts"]
+  // "include": ["src/**/*.ts", "../../libs/src/**/*.d.ts"]
 }

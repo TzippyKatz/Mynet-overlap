@@ -1,4 +1,4 @@
-import jayson from "jayson/promise";
+import jayson from "jayson/promise/index.js";
 import { rpcClientRequest } from "../rpc.functions.js";
 
 export const userRPCService = (host: string, port: number) => {

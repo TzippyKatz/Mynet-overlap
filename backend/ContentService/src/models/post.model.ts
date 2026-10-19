@@ -1,4 +1,4 @@
-import { type Document, Schema } from "mongoose";
+import { type Document, model, Schema } from "mongoose";
 import { MAX_TEXT_LENGTH } from "../../../../libs/src/consts/post.js";
 import type { Post } from "../../../../libs/src/Types/content/post.type.js";
 import { contentServiceConnection } from "../database.js";
@@ -24,10 +24,10 @@ const postSchema = new Schema(
     },
     media: {
       type: String,
-        validate: {
-          validator: (value: string) => /^https?:\/\/.+/.test(value),
-          message: "media must be a valid URL",
-        },
+      validate: {
+        validator: (value: string) => /^https?:\/\/.+/.test(value),
+        message: "media must be a valid URL",
+      },
     },
     likes: {
       type: Number,
@@ -40,4 +40,7 @@ const postSchema = new Schema(
   },
 );
 
-export const postModel = contentServiceConnection.model<Post & Document>( "posts", postSchema );
+export const postModel = contentServiceConnection.model<Post & Document>(
+  "posts",
+  postSchema,
+);

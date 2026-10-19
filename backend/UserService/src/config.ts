@@ -1,18 +1,19 @@
 import { config as loadEnv } from "dotenv";
 import { fileURLToPath } from "node:url";
+import { serviceInfo } from "../../../libs/serviceInfo.js";
 
 loadEnv({ path: fileURLToPath(new URL("../.env", import.meta.url)) });
 
-const { MONGO_URI, USER_SERVICE_PORT, USER_SERVICE_RPC_PORT } = process.env;
+const { MONGO_URI } = process.env;
 
 export const config = {
   db: {
     mongoUri: MONGO_URI,
   },
   server: {
-    port: USER_SERVICE_PORT,
+    port: serviceInfo.user.local.port,
   },
   rpc: {
-    port: USER_SERVICE_RPC_PORT,
+    port: serviceInfo.user.local.rpcPort,
   },
 };

@@ -15,4 +15,7 @@ const userSchema = new Schema({
   },
 });
 
-export const userModel = userServiceConnection.model<User & Document>( "users",  userSchema);
+export const userModel = userServiceConnection.model<User & Document>(
+  "users",
+  userSchema,
+);

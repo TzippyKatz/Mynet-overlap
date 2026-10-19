@@ -1,3 +1,5 @@
+import type { Function1 } from "lodash";
+
 export type UserRPCService = {
-  getUserById: (id: string) => Promise<unknown | null>;
+  getUserById: Function1<string, Promise<unknown | null>>;
 };

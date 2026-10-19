@@ -6,7 +6,7 @@ import { createUserManager } from "./user/user.manager.js";
 import { createUserController } from "./user/user.controller.js";
 import { createUserRouter } from "./user/user.router.js";
 import { config } from "./config.js";
-import { createUserRPCServer } from "./user/user.rpc.server.js";
+import { createUserRPCServer } from "./rpc.server.js";
 
 const app = express();
 

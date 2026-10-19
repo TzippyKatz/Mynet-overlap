@@ -1,9 +1,7 @@
-import { createConnection } from "mongoose";
-import { initDB } from "../../../libs/src/config/connection.js";
+import { connectServiceDatabase } from "../../../libs/src/config/database.js";
 import { config } from "./config.js";
 
-export const contentServiceConnection = createConnection();
+const contentServiceDatabase = connectServiceDatabase(config.db.mongoUri);
 
-export const connectContentServiceDatabase = async (): Promise<void> => {
-  await initDB(contentServiceConnection, config.db.mongoUri);
-};
+export const contentServiceConnection = contentServiceDatabase.serviceConnection;
+export const connectContentServiceDatabase = contentServiceDatabase.connect;
