@@ -1,6 +1,6 @@
 import Joi from "joi";
-import { joiMongoId } from "../../../../libs/src/joi/mongo.validate.js";
-import { MAX_TEXT_LENGTH } from "../../../../libs/src/consts/post.js";
+import { joiMongoId } from "@libs/joi/mongo.validate.js";
+import { MAX_TEXT_LENGTH } from "@libs/consts/post.js";
 
 export const canCreatePost = Joi.object({
   query: Joi.object({}),

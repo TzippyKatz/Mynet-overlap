@@ -1,4 +1,4 @@
-import { connectServiceDatabase } from "../../../libs/src/config/database.js";
+import { connectServiceDatabase } from "@libs/config/database.js";
 import { config } from "./config.js";
 
 const userServiceDatabase = connectServiceDatabase(config.db.mongoUri);

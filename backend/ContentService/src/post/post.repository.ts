@@ -2,8 +2,8 @@ import type { Document } from "mongoose";
 import type {
   CreatePostPayload,
   UpdatePostPayload,
-} from "../../../../libs/src/types/content/postPayload.type.js";
-import type { Post } from "../../../../libs/src/Types/content/post.type.js";
+} from "@libs/types/content/postPayload.type.js";
+import type { Post } from "@libs/Types/content/post.type.js";
 import { postModel } from "../models/post.model.js";
 
 type PostDocument = Post & Document;

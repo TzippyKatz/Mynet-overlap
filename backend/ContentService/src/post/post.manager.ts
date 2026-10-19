@@ -1,10 +1,10 @@
 import type {
   CreatePostPayload,
-} from "../../../../libs/src/types/content/postPayload.type.js";
+} from "@libs/types/content/postPayload.type.js";
 import isNil from "lodash/isNil.js";
 import { postRepository } from "./post.repository.js";
 import { userService } from "../rpc.client.js";
-import type { Post } from "../../../../libs/src/Types/content/post.type.js";
+import type { Post } from "@libs/Types/content/post.type.js";
 import type { Document } from "mongoose";
 
 type PostDocument = Post & Document;

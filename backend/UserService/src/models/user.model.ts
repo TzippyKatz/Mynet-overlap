@@ -1,5 +1,5 @@
 import { type Document, Schema } from "mongoose";
-import type { User } from "../../../../libs/src/Types/user/user.type.js";
+import type { User } from "@libs/Types/user/user.type.js";
 import { userServiceConnection } from "../database.js";
 
 const userSchema = new Schema({

@@ -1,5 +1,5 @@
 import { createConnection } from "mongoose";
-import { initDB } from "../../../libs/src/config/connection.js";
+import { initDB } from "@libs/config/connection.js";
 
 export const connectServiceDatabase = (mongoUri: string | undefined) => {
   const serviceConnection = createConnection();

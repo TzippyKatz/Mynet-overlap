@@ -1,6 +1,6 @@
 import express from "express";
 import { connectContentServiceDatabase } from "./database.js";
-import { startServer } from "../../../libs/src/servers/startServer.js";
+import { startServer } from "@libs//servers/startServer.js";
 import { config } from "./config.js";
 import appRouter from "./router.js";
 
