@@ -1,51 +1,33 @@
-import { Types, type Document, type Model } from "mongoose";
+import type { Document } from "mongoose";
+import type {
+  CreatePostPayload,
+  UpdatePostPayload,
+} from "../../../../libs/src/types/content/postPayload.type.js";
 import type { Post } from "../../../../libs/src/Types/content/post.type.js";
+import { postModel } from "../models/post.model.js";
 
-export const createPostRepository = (postModel: Model<Post & Document>) => {
-  const createPost = async (post: {
-    userId: string;
-    postName: string;
-    text: string;
-    media?: string;
-  }) => {
-    return postModel.create({
-      ...post,
-      userId: new Types.ObjectId(post.userId),
-    });
-  };
+type PostDocument = Post & Document;
 
-  const getAllPosts = async () => {
-    return postModel.find().sort({ createdAt: -1 });
-  };
+export const postRepository = {
+  create: async (post: CreatePostPayload): Promise<PostDocument> =>
+    await postModel.create(post),
 
-  const getPostById = async (id: string) => {
-    return postModel.findById(id);
-  };
+  getAll: async (): Promise<PostDocument[]> =>
+    await postModel.find().sort({ createdAt: -1 }),
 
-  const updatePost = async (
+  getById: async (id: string): Promise<PostDocument | null> =>
+    await postModel.findById(id),
+
+  update: async (
     id: string,
-    post: {
-      postName?: string;
-      text?: string;
-      media?: string;
-    },
-  ) => {
-    return postModel.findByIdAndUpdate(
+    post: UpdatePostPayload,
+  ): Promise<PostDocument | null> =>
+    await postModel.findByIdAndUpdate(
       id,
       { $set: post },
       { new: true, runValidators: true },
-    );
-  };
+    ),
 
-  const deletePost = async (id: string) => {
-    return postModel.findByIdAndDelete(id);
-  };
-
-  return {
-    createPost,
-    getAllPosts,
-    getPostById,
-    updatePost,
-    deletePost,
-  };
+  delete: async (id: string): Promise<PostDocument | null> =>
+    await postModel.findByIdAndDelete(id),
 };

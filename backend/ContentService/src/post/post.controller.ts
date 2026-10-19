@@ -1,107 +1,77 @@
 import type { Request, Response, NextFunction } from "express";
-import type { createPostManager } from "./post.manager.js";
+import { postManager } from "./post.manager.js";
+// import { isNil } from "lodash";
+import isNil from "lodash/isNil.js";
 
-export const createPostController = (
-  postManager: ReturnType<typeof createPostManager>,
-) => {
-  const createPost = (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> => {
-    const { userId, postName, text, media } = req.body;
+export const postController = {
+  create: async (req: Request, res: Response): Promise<void> => {
+    res.json(await postManager.create(req.body));
+  },
 
-    return postManager
-      .createPost(userId, postName, text, media)
-      .then((post) => {
-        res.status(201).json(post);
-      })
-      .catch(next);
-  };
+  getAll: async (req: Request, res: Response): Promise<void> => {
+    res.json(await postManager.getAll());
+  },
 
-  const getAllPosts = (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> => {
-    return postManager
-      .getAllPosts()
-      .then((posts) => {
-        res.status(200).json(posts);
-      })
-      .catch(next);
-  };
-
-  const getPostById = (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> => {
+  getById: async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
 
     if (typeof id !== "string") {
       res.status(400).json({ message: "Invalid post ID" });
-      return Promise.resolve();
+      return;
     }
 
-    return postManager
-      .getPostById(id)
-      .then((post) => {
-        if (!post) {
-          res.status(404).json({ message: "Post not found" });
-          return;
-        }
-        res.status(200).json(post);
-      })
-      .catch(next);
-  };
+    const post = await postManager.getById(id);
 
-  const updatePost = (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> => {
+    if (!post) {
+      res.status(404).json({ message: "Post not found" });
+      return;
+    }
+
+    res.status(200).json(post);
+  },
+
+  update: async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
+
+    if (typeof id !== "string") {
+      res.status(400).json({ message: "Invalid post ID" });
+      return;
+    }
+
     const { postName, text, media } = req.body;
 
-    if (typeof id !== "string") {
-      res.status(400).json({ message: "Invalid post ID" });
-      return Promise.resolve();
+    const post = await postManager.update(id, {
+      ...(!isNil(postName) && { postName }),
+      ...(!isNil(text) && { text }),
+      ...(!isNil(media) && { media }),
+    });
+
+    if (!post) {
+      res.status(404).json({ message: "Post not found" });
+      return;
     }
 
-    return postManager
-      .updatePost(id, postName, text, media)
-      .then((post) => {
-        res.status(200).json(post);
-      })
-      .catch(next);
-  };
+    res.status(200).json(post);
+  },
 
-  const deletePost = (
+  delete: async (
     req: Request,
     res: Response,
-    next: NextFunction,
   ): Promise<void> => {
     const { id } = req.params;
 
     if (typeof id !== "string") {
       res.status(400).json({ message: "Invalid post ID" });
-      return Promise.resolve();
+      return;
     }
 
-    return postManager
-      .deletePost(id)
-      .then((post) => {
-        res.status(200).json(post);
-      })
-      .catch(next);
-  };
+    const post = await postManager.delete(id);
 
-  return {
-    createPost,
-    getAllPosts,
-    getPostById,
-    updatePost,
-    deletePost,
-  };
+    if (!post) {
+      res.status(404).json({ message: "Post not found" });
+      return;
+    }
+
+    res.status(200).json(post);
+  },
 };

@@ -1,69 +1,48 @@
-import type { Request, Response, NextFunction } from "express";
-import { MAX_TEXT_LENGTH } from "../../../../libs/src/consts.js";
-import { Types } from "mongoose";
+import Joi from "joi";
+import { joiMongoId } from "../../../../libs/src/joi/mongo.validate.js";
+import { MAX_TEXT_LENGTH } from "../../../../libs/src/consts/post.js";
 
-export const validateCreatePost = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-): void => {
-  const { userId, postName, text, media } = req.body;
+export const canCreatePost = Joi.object({
+  query: Joi.object({}),
+  params: Joi.object({}),
+  body: Joi.object({
+    userId: joiMongoId().required(),
+    postName: Joi.string().trim().required(),
+    text: Joi.string().trim().max(MAX_TEXT_LENGTH).required(),
+    media: Joi.string().uri({ scheme: ["http", "https"] }),
+  }).required(),
+});
 
-  const isValid =
-    typeof userId === "string" &&
-    userId.trim().length > 0 &&
-    typeof postName === "string" &&
-    postName.trim().length > 0 &&
-    typeof text === "string" &&
-    text.trim().length > 0 &&
-    text.length <= MAX_TEXT_LENGTH &&
-    (media === undefined ||
-      (typeof media === "string" && /^https?:\/\/.+/.test(media)));
+export const canGetAllPosts = Joi.object({
+  query: Joi.object({}),
+  params: Joi.object({}),
+  body: Joi.object({}),
+});
 
-  return isValid
-    ? next()
-    : void res.status(400).json({
-        message:
-          "userId, postName and text are required strings. Text must not exceed the maximum length, and media must be a valid URL if provided.",
-      });
-};
+export const canGetPostById = Joi.object({
+  query: Joi.object({}),
+  params: Joi.object({
+    id: joiMongoId().required(),
+  }).required(),
+  body: Joi.object({}),
+});
 
-export const validateUpdatePost = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-): void => {
-  const { postName, text, media } = req.body;
+export const canUpdatePost = Joi.object({
+  query: Joi.object({}),
+  params: Joi.object({
+    id: joiMongoId().required(),
+  }).required(),
+  body: Joi.object({
+    postName: Joi.string().trim(),
+    text: Joi.string().trim().max(MAX_TEXT_LENGTH),
+    media: Joi.string().uri({ scheme: ["http", "https"] }),
+  }).required(),
+});
 
-  const isValid =
-    (postName === undefined ||
-      (typeof postName === "string" && postName.trim().length > 0)) &&
-    (text === undefined ||
-      (typeof text === "string" &&
-        text.trim().length > 0 &&
-        text.length <= MAX_TEXT_LENGTH)) &&
-    (media === undefined ||
-      (typeof media === "string" && /^https?:\/\/.+/.test(media)));
-
-  return isValid
-    ? next()
-    : void res.status(400).json({
-        message:
-          "Post fields must be valid strings. Text must not exceed the maximum length, and media must be a valid URL if provided.",
-      });
-};
-
-export const validatePostId = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-): void => {
-  const { id } = req.params;
-
-  if (typeof id !== "string" || !Types.ObjectId.isValid(id)) {
-    res.status(400).json({ message: "Invalid post ID" });
-    return;
-  }
-
-  next();
-};
+export const canDeletePost = Joi.object({
+  query: Joi.object({}),
+  params: Joi.object({
+    id: joiMongoId().required(),
+  }).required(),
+  body: Joi.object({}),
+});

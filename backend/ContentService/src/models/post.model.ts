@@ -1,5 +1,5 @@
 import { type Document, Schema } from "mongoose";
-import { MAX_TEXT_LENGTH } from "../../../../libs/src/consts.js";
+import { MAX_TEXT_LENGTH } from "../../../../libs/src/consts/post.js";
 import type { Post } from "../../../../libs/src/Types/content/post.type.js";
 import { contentServiceConnection } from "../database.js";
 
