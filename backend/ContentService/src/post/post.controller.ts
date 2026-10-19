@@ -1,6 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
 import { postManager } from "./post.manager.js";
-// import { isNil } from "lodash";
 import isNil from "lodash/isNil.js";
 
 export const postController = {

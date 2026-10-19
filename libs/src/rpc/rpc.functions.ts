@@ -1,4 +1,4 @@
-import type { Client } from "jayson/promise";
+import type { Client } from "jayson/promise/index.js";
 
 export const rpcClientRequest = async <T>(
   rpcClient: Client,

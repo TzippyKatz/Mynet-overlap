@@ -1,25 +1,16 @@
 import type { Document, Model } from "mongoose";
+import type { CreateUserPayload } from "../../../../libs/src/types/user/userPayload.js";
 import type { User } from "../../../../libs/src/Types/user/user.type.js";
+import { userModel } from "../models/user.model.js";
 
-export const createUserRepository = (userModel: Model<User & Document>) => {
-    const createUser = async (username: string, displayedName: string) => {
-        return userModel.create({
-            username,
-            displayedName,
-        });
-    };
+type UserDocument = User & Document;
 
-    const getAllUsers = async () => {
-        return userModel.find();
-    };
+export const userRepository = {
+  create: async (user: CreateUserPayload): Promise<UserDocument> =>
+    await userModel.create(user),
 
-    const getUserById = async (id: string) => {
-        return userModel.findById(id);
-    };
+  getAll: async (): Promise<UserDocument[]> => await userModel.find(),
 
-    return {
-        createUser,
-        getAllUsers,
-        getUserById,
-    };
+  getById: async (id: string): Promise<UserDocument | null> =>
+    await userModel.findById(id),
 };
