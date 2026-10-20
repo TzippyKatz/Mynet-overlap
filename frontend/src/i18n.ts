@@ -47,6 +47,12 @@ i18n.use(initReactI18next).init({
           creating: "Creating...",
           submit: "Create Post",
         },
+        navbar: {
+          users: "Users",
+          createUser: "Create User",
+          posts: "Posts",
+          createPost: "Create Post",
+        },
       },
     },
     he: {
@@ -90,6 +96,12 @@ i18n.use(initReactI18next).init({
           createSuccess: "הפוסט נוצר בהצלחה.",
           creating: "יוצר פוסט...",
           submit: "יצירת פוסט",
+        },
+        navbar: {
+          users: "משתמשים",
+          createUser: "יצירת משתמש",
+          posts: "פוסטים",
+          createPost: "יצירת פוסט",
         },
       },
     },
