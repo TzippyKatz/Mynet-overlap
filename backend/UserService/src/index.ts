@@ -3,6 +3,7 @@ import express, {
   type Request,
   type Response,
 } from "express";
+import cors from "cors";
 import { connectUserServiceDatabase } from "./database.js";
 import { config } from "./config.js";
 import userRouter from "./user/user.router.js";
@@ -10,6 +11,12 @@ import { startServer } from "@libs/servers/startServer.js";
 import { rpcServer } from "./rpc.server.js";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:5173/",
+  }),
+);
 
 app.use(express.json());
 
