@@ -2,18 +2,19 @@ import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 import ContentLoader from "react-content-loader";
 import { useUsers } from "./functions";
-import { usersStyles } from "./styles";
+import { useStyles } from "./styles";
 
 const Users: FC = () => {
+  const classes = useStyles();
   const { t } = useTranslation();
-  const { users, isLoading, error } = useUsers();
+  const { data: users = [], isLoading, isError } = useUsers();
 
   return (
-    <main style={usersStyles.container}>
-      <h1 style={usersStyles.title}>{t("users.title")}</h1>
+    <main className={classes.container}>
+      <h1 className={classes.title}>{t("users.title")}</h1>
 
       {isLoading ? (
-        <div style={usersStyles.list}>
+        <div className={classes.list}>
           {[1, 2, 3].map((item) => (
             <ContentLoader
               key={item}
@@ -29,16 +30,16 @@ const Users: FC = () => {
             </ContentLoader>
           ))}
         </div>
-      ) : error ? (
-        <p style={usersStyles.error}>{t("users.loadError")}</p>
+      ) : isError ? (
+        <p className={classes.error}>{t("users.loadError")}</p>
       ) : users.length === 0 ? (
-        <p style={usersStyles.message}>{t("users.empty")}</p>
+        <p className={classes.message}>{t("users.empty")}</p>
       ) : (
-        <div style={usersStyles.list}>
+        <div className={classes.list}>
           {users.map((user) => (
-            <article key={user._id} style={usersStyles.userCard}>
-              <h2 style={usersStyles.displayedName}>{user.displayedName}</h2>
-              <p style={usersStyles.username}>@{user.username}</p>
+            <article key={user._id} className={classes.userCard}>
+              <h2 className={classes.displayedName}>{user.displayedName}</h2>
+              <p className={classes.username}>@{user.username}</p>
             </article>
           ))}
         </div>
