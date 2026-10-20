@@ -1,8 +1,10 @@
 import "./App.css";
-import Users from "./pages/users";
+import CreateUser from "./pages/createUser";
+// import Users from "./pages/users";
 
 function App() {
-  return <Users />;
+  // return <Users />;
+  return <CreateUser />;
 }
 
 export default App;
