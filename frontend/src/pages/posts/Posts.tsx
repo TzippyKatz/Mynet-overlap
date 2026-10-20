@@ -1,17 +1,25 @@
-import type { FC } from "react";
+import { useState, type FC } from "react";
 import { useTranslation } from "react-i18next";
 import ContentLoader from "react-content-loader";
 import { usePosts } from "./functions";
 import { useStyles } from "./styles";
+import { PostSearch } from "./searchPost/SearchPost";
 
 const Posts: FC = () => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { data: posts = [], isLoading, isError } = usePosts();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredPosts = posts.filter((post) =>
+    post.postName.toLowerCase().startsWith(searchTerm.trim().toLowerCase()),
+  );
 
   return (
     <main className={classes.container}>
       <h1 className={classes.title}>{t("posts.title")}</h1>
+
+      <PostSearch searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
       {isLoading ? (
         <div className={classes.skeleton}>
@@ -36,11 +44,13 @@ const Posts: FC = () => {
         <p className={classes.error} role="alert">
           {t("posts.loadError")}
         </p>
-      ) : posts.length === 0 ? (
-        <p className={classes.message}>{t("posts.empty")}</p>
+      ) : filteredPosts.length === 0 ? (
+        <p className={classes.message}>
+          {searchTerm.trim() ? t("posts.noSearchResults") : t("posts.empty")}
+        </p>
       ) : (
         <div className={classes.list}>
-          {posts.map((post) => (
+          {filteredPosts.map((post) => (
             <article key={post._id} className={classes.postCard}>
               <h2 className={classes.postName}>{post.postName}</h2>
 

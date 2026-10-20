@@ -26,10 +26,12 @@ i18n.use(initReactI18next).init({
         posts: {
           title: "Posts",
           loadError: "Failed to load posts. Please try again.",
+          noSearchResults: "No posts found in this search.",
           empty: "No posts found.",
           viewMedia: "View media",
           likes_one: "{{count}} like",
           likes_other: "{{count}} likes",
+          searchPlaceholder: "search by post name.",
         },
         createPost: {
           title: "Create Post",
@@ -68,10 +70,12 @@ i18n.use(initReactI18next).init({
         posts: {
           title: "פוסטים",
           loadError: "טעינת הפוסטים נכשלה. נסו שוב.",
+          noSearchResults: "לא נמצאו פוסטים שמתאימים לחיפוש זה.",
           empty: "לא נמצאו פוסטים.",
           viewMedia: "צפייה במדיה",
           likes_one: "{{count}} לייק",
           likes_other: "{{count}} לייקים",
+          searchPlaceholder: "חיפוש לפי שם.",
         },
         createPost: {
           title: "יצירת פוסט",
