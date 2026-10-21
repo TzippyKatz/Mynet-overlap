@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useStyles } from "./styles";
 import type { PostSearchProps } from "../../../utils/types/content/searchProps.type";
 
-const PostSearch: FC<PostSearchProps> = ({ searchTerm, onSearchChange }) => {
+const SearchPost: FC<PostSearchProps> = ({ searchTerm, onSearchChange }) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -18,4 +18,4 @@ const PostSearch: FC<PostSearchProps> = ({ searchTerm, onSearchChange }) => {
   );
 };
 
-export { PostSearch };
+export { SearchPost };

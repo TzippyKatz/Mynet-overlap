@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader";
 import { usePosts } from "./functions";
 import { filter, startsWith, toLower, trim } from "lodash/fp";
 import { useStyles } from "./styles";
-import { PostSearch } from "./searchPost/SearchPost";
+import SearchPost from "./searchPost";
 
 const Posts: FC = () => {
   const classes = useStyles();
@@ -25,7 +25,7 @@ const Posts: FC = () => {
     <main className={classes.container}>
       <h1 className={classes.title}>{t("posts.title")}</h1>
 
-      <PostSearch searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+      <SearchPost searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
       {isLoading ? (
         <div className={classes.skeleton}>
