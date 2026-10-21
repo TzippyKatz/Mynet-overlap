@@ -1,6 +1,5 @@
-import { type Document, Schema } from "mongoose";
+import { type Document, model, Schema } from "mongoose";
 import type { User } from "@libs/Types/user/user.type.js";
-import { userServiceConnection } from "../database.js";
 
 const userSchema = new Schema({
   username: {
@@ -15,7 +14,4 @@ const userSchema = new Schema({
   },
 });
 
-export const userModel = userServiceConnection.model<User & Document>(
-  "users",
-  userSchema,
-);
+export const userModel = model<User & Document>("users", userSchema);

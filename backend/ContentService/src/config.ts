@@ -14,7 +14,8 @@ export const config = {
     port: serviceInfo.content.local.port,
   },
   rpc: {
-    port: serviceInfo.content.local.rpcPort,
+    // port: serviceInfo.content.local.rpcPort,
+    port: serviceInfo.user.local.rpcPort,
     host: USER_SERVICE_RPC_HOST ?? "localhost",
   },
 };

@@ -7,7 +7,7 @@ import {
   canGetPostById,
   canUpdatePost,
 } from "./post.validator.js";
-import { validateRequest } from "./post.middleware.js";
+import { validateRequest } from "@libs/validation/middleware.js";
 
 const postRouter = Router();
 

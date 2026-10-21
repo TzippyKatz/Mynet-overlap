@@ -1,10 +1,13 @@
-import { createConnection } from "mongoose";
-import { initDB } from "@libs/config/connection.js";
+import { Connection } from "mongoose";
+import { initDB } from "./connection.js";
 
-export const connectServiceDatabase = (mongoUri: string | undefined) => {
-  const serviceConnection = createConnection();
+export const connectServiceDatabase = (
+  connection: Pick<Connection, "openUri">,
+  mongoUri: string | undefined,
+) => {
   const connect = async (): Promise<void> => {
-    await initDB(serviceConnection, mongoUri);
+    await initDB(connection, mongoUri);
   };
-  return { serviceConnection, connect };
+
+  return { connect };
 };
