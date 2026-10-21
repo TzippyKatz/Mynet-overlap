@@ -6,7 +6,7 @@ import Navbar from "./components/navbar";
 import Posts from "./pages/posts";
 import Users from "./pages/users";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
@@ -22,6 +22,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

@@ -2,6 +2,7 @@ import { useState, type FC } from "react";
 import { useTranslation } from "react-i18next";
 import ContentLoader from "react-content-loader";
 import { usePosts } from "./functions";
+import { filter, startsWith, toLower, trim } from "lodash/fp";
 import { useStyles } from "./styles";
 import { PostSearch } from "./searchPost/SearchPost";
 
@@ -11,9 +12,14 @@ const Posts: FC = () => {
   const { data: posts = [], isLoading, isError } = usePosts();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredPosts = posts.filter((post) =>
-    post.postName.toLowerCase().startsWith(searchTerm.trim().toLowerCase()),
+  const filteredPosts = filter(
+    ({ postName }) => startsWith(toLower(trim(searchTerm)), toLower(postName)),
+    posts,
   );
+
+  console.log("Posts:", posts);
+  console.log("Search term:", searchTerm);
+  console.log("Filtered posts:", filteredPosts);
 
   return (
     <main className={classes.container}>
@@ -52,21 +58,15 @@ const Posts: FC = () => {
         <div className={classes.list}>
           {filteredPosts.map((post) => (
             <article key={post._id} className={classes.postCard}>
-              <h2 className={classes.postName}>{post.postName}</h2>
-
-              <p className={classes.postText}>{post.text}</p>
-
+              <h2 className={classes.postName}>{post.postName}</h2>{" "}
               {post.media && (
-                <a
-                  className={classes.mediaLink}
-                  href={post.media}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t("posts.viewMedia")}
-                </a>
+                <img
+                  className={classes.media}
+                  src={post.media}
+                  alt={post.postName}
+                />
               )}
-
+              <p className={classes.postText}>{post.text}</p>
               <p className={classes.likes}>
                 {t("posts.likes", { count: post.likes })}
               </p>

@@ -6,10 +6,7 @@ import ContentLoader from "react-content-loader";
 import type { CreatePostPayload } from "@libs/types/content/postPayload.type.js";
 import { useCreatePost } from "./functions";
 import { useStyles } from "./styles";
-
-type CreatePostProps = {
-  userId: string;
-};
+import type { CreatePostProps } from "../../utils/types/content/props.type";
 
 const CreatePost: FC<CreatePostProps> = ({ userId }) => {
   const classes = useStyles();
