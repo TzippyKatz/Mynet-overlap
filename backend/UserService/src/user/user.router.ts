@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { userController } from "./user.controller.js";
-import { validateCreateUser, validateGetUserById } from "./user.validator.js";
+import { canCreateUser, canGetUserById } from "./user.validator.js";
+import { validateRequest } from "@libs/validation/middleware.js";
 
 const userRouter = Router();
 
-userRouter.post("/", validateCreateUser, userController.create);
+userRouter.post("/", validateRequest(canCreateUser), userController.create);
 
-userRouter.get("/:id", validateGetUserById, userController.getById);
+userRouter.get("/:id", validateRequest(canGetUserById), userController.getById);
 
 userRouter.get("/", userController.getAll);
 

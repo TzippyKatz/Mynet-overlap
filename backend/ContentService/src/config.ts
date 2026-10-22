@@ -1,6 +1,6 @@
 import { config as loadEnv } from "dotenv";
 import { fileURLToPath } from "node:url";
-import { serviceInfo } from "../../../libs/serviceInfo.js";
+import { serviceInfo } from "@libs/servers/serviceInfo.js";
 
 loadEnv({ path: fileURLToPath(new URL("../.env", import.meta.url)) });
 
@@ -14,7 +14,7 @@ export const config = {
     port: serviceInfo.content.local.port,
   },
   rpc: {
-    port: serviceInfo.content.local.rpcPort,
+    port: serviceInfo.user.local.rpcPort,
     host: USER_SERVICE_RPC_HOST ?? "localhost",
   },
 };

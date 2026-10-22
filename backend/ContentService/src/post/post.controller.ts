@@ -1,6 +1,6 @@
-import type { Request, Response, NextFunction } from "express";
+import type { Request, Response } from "express";
 import { postManager } from "./post.manager.js";
-import isNil from "lodash/isNil.js";
+import type { UpdatePostPayload } from "./post.type.js";
 
 export const postController = {
   create: async (req: Request, res: Response): Promise<void> => {
@@ -11,66 +11,24 @@ export const postController = {
     res.json(await postManager.getAll());
   },
 
-  getById: async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
-
-    if (typeof id !== "string") {
-      res.status(400).json({ message: "Invalid post ID" });
-      return;
-    }
-
-    const post = await postManager.getById(id);
-
-    if (!post) {
-      res.status(404).json({ message: "Post not found" });
-      return;
-    }
-
-    res.status(200).json(post);
+  getById: async (
+    req: Request<{ id: string }>,
+    res: Response,
+  ): Promise<void> => {
+    res.json(await postManager.getById(req.params.id));
   },
 
-  update: async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
-
-    if (typeof id !== "string") {
-      res.status(400).json({ message: "Invalid post ID" });
-      return;
-    }
-
-    const { postName, text, media } = req.body;
-
-    const post = await postManager.update(id, {
-      ...(!isNil(postName) && { postName }),
-      ...(!isNil(text) && { text }),
-      ...(!isNil(media) && { media }),
-    });
-
-    if (!post) {
-      res.status(404).json({ message: "Post not found" });
-      return;
-    }
-
-    res.status(200).json(post);
+  update: async (
+    req: Request<{ id: string }, { body: UpdatePostPayload }>,
+    res: Response,
+  ): Promise<void> => {
+    res.json(await postManager.update(req.params.id, req.body));
   },
 
   delete: async (
-    req: Request,
+    req: Request<{ id: string }>,
     res: Response,
   ): Promise<void> => {
-    const { id } = req.params;
-
-    if (typeof id !== "string") {
-      res.status(400).json({ message: "Invalid post ID" });
-      return;
-    }
-
-    const post = await postManager.delete(id);
-
-    if (!post) {
-      res.status(404).json({ message: "Post not found" });
-      return;
-    }
-
-    res.status(200).json(post);
+    res.json(await postManager.delete(req.params.id));
   },
 };

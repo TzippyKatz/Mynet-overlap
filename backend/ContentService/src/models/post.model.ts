@@ -1,7 +1,6 @@
 import { type Document, model, Schema } from "mongoose";
 import { MAX_TEXT_LENGTH } from "@libs/consts/post.js";
 import type { Post } from "@libs/Types/content/post.type.js";
-import { contentServiceConnection } from "../database.js";
 
 const postSchema = new Schema(
   {
@@ -40,7 +39,4 @@ const postSchema = new Schema(
   },
 );
 
-export const postModel = contentServiceConnection.model<Post & Document>(
-  "posts",
-  postSchema,
-);
+export const postModel = model<Post & Document>("posts", postSchema);

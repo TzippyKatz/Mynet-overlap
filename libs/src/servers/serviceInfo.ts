@@ -8,7 +8,7 @@ export const serviceInfo = {
   content: {
     local: {
       port: 3001,
-      rpcPort: 4000,
+      rpcPort: 4001,
     },
   },
 };

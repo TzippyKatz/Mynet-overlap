@@ -1,33 +1,27 @@
-import type { Document } from "mongoose";
 import type {
   CreatePostPayload,
   UpdatePostPayload,
-} from "@libs/types/content/postPayload.type.js";
+} from "./post.type.js";
 import type { Post } from "@libs/Types/content/post.type.js";
 import { postModel } from "../models/post.model.js";
 
-type PostDocument = Post & Document;
-
 export const postRepository = {
-  create: async (post: CreatePostPayload): Promise<PostDocument> =>
+  create: async (post: CreatePostPayload): Promise<Post> =>
     await postModel.create(post),
 
-  getAll: async (): Promise<PostDocument[]> =>
+  getAll: async (): Promise<Post[]> =>
     await postModel.find().sort({ createdAt: -1 }),
 
-  getById: async (id: string): Promise<PostDocument | null> =>
+  getById: async (id: string): Promise<Post | null> =>
     await postModel.findById(id),
 
-  update: async (
-    id: string,
-    post: UpdatePostPayload,
-  ): Promise<PostDocument | null> =>
+  update: async (id: string, post: UpdatePostPayload): Promise<Post | null> =>
     await postModel.findByIdAndUpdate(
       id,
       { $set: post },
       { new: true, runValidators: true },
     ),
 
-  delete: async (id: string): Promise<PostDocument | null> =>
+  delete: async (id: string): Promise<Post | null> =>
     await postModel.findByIdAndDelete(id),
 };

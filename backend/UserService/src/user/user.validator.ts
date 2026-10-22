@@ -1,38 +1,19 @@
-import type { Request, Response, NextFunction } from "express";
-import { isValidObjectId } from "mongoose";
+import Joi from "joi";
+import { joiMongoId } from "@libs/joi/mongo.validate.js";
 
-export const validateCreateUser = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-): void => {
-  const { username, displayedName } = req.body;
+export const canCreateUser = Joi.object({
+  query: Joi.object({}),
+  params: Joi.object({}),
+  body: Joi.object({
+    username: Joi.string().trim().required(),
+    displayedName: Joi.string().trim().required(),
+  }).required(),
+});
 
-  const isValid =
-    typeof username === "string" &&
-    username.trim().length > 0 &&
-    typeof displayedName === "string" &&
-    displayedName.trim().length > 0;
-
-  return isValid
-    ? next()
-    : void res.status(400).json({
-        message: "username and displayedName are required strings",
-      });
-};
-
-export const validateGetUserById = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-): void => {
-  const { id } = req.params;
-
-  const isValid = isValidObjectId(id);
-
-  return isValid
-    ? next()
-    : void res.status(400).json({
-        message: "id must be a valid user id",
-      });
-};
+export const canGetUserById = Joi.object({
+  query: Joi.object({}),
+  params: Joi.object({
+    id: joiMongoId().required(),
+  }).required(),
+  body: Joi.object({}),
+});
