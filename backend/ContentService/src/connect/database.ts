@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { connectServiceDatabase } from "@libs/config/database.js";
-import { config } from "./config.js";
+import { config } from "../config.js";
 
 const contentServiceDatabase = connectServiceDatabase(
   mongoose.connection,

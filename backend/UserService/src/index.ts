@@ -3,7 +3,7 @@ import { config } from "./config.js";
 import appRouter from "./router.js";
 import { startServer } from "@libs/servers/startServer.js";
 import { rpcServer } from "./rpc.server.js";
-import { connectUserServiceDatabase } from "./database.js";
+import { connectUserServiceDatabase } from "./connect/database.js";
 
 const app = express();
 
