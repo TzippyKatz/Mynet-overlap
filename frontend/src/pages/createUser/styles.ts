@@ -1,7 +1,7 @@
 import { createUseStyles } from "react-jss";
 
 export const useStyles = createUseStyles({
-  container: {
+  createUser: {
     width: 580,
     margin: "48px auto",
     padding: 36,

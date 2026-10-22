@@ -1,18 +1,19 @@
-import { useState } from "react";
 import type { FC } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import ContentLoader from "react-content-loader";
-import type { CreatePostPayload } from "@libs/types/content/postPayload.type.js";
-import { useCreatePost } from "./functions";
 import { useStyles } from "./styles";
-import type { CreatePostProps } from "../../utils/types/content/props.type";
+import type { CreatePostProps } from "./props.types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { contentService } from "../../services/content/content.service";
+import { QUERY_KEYS } from "../../utils/queryKeys";
+import type { CreatePostPayload } from "@libs/types/content/postPayload.type";
+import { isEmpty, trim } from "lodash/fp";
+import { MAX_TEXT_LENGTH } from "@libs/consts/post.js";
 
 const CreatePost: FC<CreatePostProps> = ({ userId }) => {
   const classes = useStyles();
-  const { t } = useTranslation();
-  const createPostMutation = useCreatePost();
-  const [isCreated, setIsCreated] = useState(false);
+  const { t } = useTranslation("translation", { keyPrefix: "createPost" });
 
   const {
     register,
@@ -28,41 +29,51 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
     },
   });
 
-  const onSubmit = (data: CreatePostPayload) => {
-    setIsCreated(false);
+  const queryClient = useQueryClient();
 
-    const { media, ...postData } = data;
-
-    createPostMutation.mutate(
-      {
-        ...postData,
-        postName: data.postName.trim(),
-        text: data.text.trim(),
+  const {
+    mutate: createPost,
+    isPending,
+    isError,
+    isSuccess,
+    error,
+  } = useMutation({
+    mutationFn: contentService.createPost,
+    onSuccess: () => {
+      reset({
+        postName: "",
         userId,
-        ...(media?.trim() ? { media: media.trim() } : {}),
-      },
-      {
-        onSuccess: () => {
-          reset({
-            postName: "",
-            userId,
-            text: "",
-            media: "",
-          });
-          setIsCreated(true);
-        },
-      },
-    );
+        text: "",
+        media: "",
+      });
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEYS.POSTS,
+      });
+    },
+  });
+
+  const onSubmit = ({
+    postName,
+    text,
+    userId,
+    media,
+  }: CreatePostPayload): void => {
+    createPost({
+      postName: trim(postName),
+      text: trim(text),
+      userId,
+      ...(media && trim(media) && { media: trim(media) }),
+    });
   };
 
   return (
-    <main className={classes.container}>
-      <h1 className={classes.title}>{t("createPost.title")}</h1>
+    <div className={classes.createPost}>
+      <h1 className={classes.title}>{t("title")}</h1>
 
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.field}>
           <label className={classes.label} htmlFor="postName">
-            {t("createPost.postName")}
+            {t("postName")}
           </label>
 
           <input
@@ -71,9 +82,9 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
               errors.postName ? classes.inputError : ""
             }`}
             {...register("postName", {
-              required: t("createPost.postNameRequired"),
+              required: t("postNameRequired"),
               validate: (value) =>
-                value.trim().length > 0 || t("createPost.postNameRequired"),
+                !isEmpty(trim(value)) || t("postNameRequired"),
             })}
           />
 
@@ -84,7 +95,7 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
 
         <div className={classes.field}>
           <label className={classes.label} htmlFor="text">
-            {t("createPost.text")}
+            {t("text")}
           </label>
 
           <textarea
@@ -93,12 +104,11 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
               errors.text ? classes.inputError : ""
             }`}
             {...register("text", {
-              required: t("createPost.textRequired"),
+              required: t("textRequired"),
               validate: {
-                notEmpty: (value) =>
-                  value.trim().length > 0 || t("createPost.textRequired"),
+                notEmpty: (value) => !isEmpty(trim(value)) || t("textRequired"),
                 maxLength: (value) =>
-                  value.length <= 200 || t("createPost.textMaxLength"),
+                  value.length <= MAX_TEXT_LENGTH || t("textMaxLength"),
               },
             })}
           />
@@ -110,7 +120,7 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
 
         <div className={classes.field}>
           <label className={classes.label} htmlFor="media">
-            {t("createPost.media")}
+            {t("media")}
           </label>
 
           <input
@@ -120,9 +130,7 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
             }`}
             {...register("media", {
               validate: (value) =>
-                !value ||
-                /^https?:\/\/.+/.test(value) ||
-                t("createPost.mediaInvalid"),
+                !value || /^https?:\/\/.+/.test(value) || t("mediaInvalid"),
             })}
           />
 
@@ -131,29 +139,23 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
           )}
         </div>
 
-        {createPostMutation.isError && (
+        {isError && (
           <p className={classes.serverError} role="alert">
-            {t("createPost.createError")}
+            {t("createError")}
           </p>
         )}
 
-        {isCreated && (
+        {isSuccess && (
           <p className={classes.success} role="status">
-            {t("createPost.createSuccess")}
+            {t("createSuccess")}
           </p>
         )}
 
-        <button
-          className={classes.button}
-          type="submit"
-          disabled={createPostMutation.isPending}
-        >
-          {createPostMutation.isPending
-            ? t("createPost.creating")
-            : t("createPost.submit")}
+        <button className={classes.button} type="submit" disabled={isPending}>
+          {isPending ? t("creating") : t("submit")}
         </button>
 
-        {createPostMutation.isPending && (
+        {isPending && (
           <div className={classes.loader}>
             <ContentLoader
               speed={1.5}
@@ -168,7 +170,7 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
           </div>
         )}
       </form>
-    </main>
+    </div>
   );
 };
 

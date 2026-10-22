@@ -1,12 +1,12 @@
-const { VITE_USER_SERVICE_URL, VITE_CONTENT_SERVICE_URL } = import.meta.env;
+import { serviceInfo } from "@libs/servers/serviceInfo";
 
 export const config = {
   server: {
     user: {
-      url: VITE_USER_SERVICE_URL,
+      url: `${serviceInfo.user.env}${serviceInfo.user.local.port}${serviceInfo.user.api}`,
     },
     content: {
-      url: VITE_CONTENT_SERVICE_URL,
+      url: `${serviceInfo.content.env}${serviceInfo.content.local.port}${serviceInfo.content.api}`,
     },
   },
 };

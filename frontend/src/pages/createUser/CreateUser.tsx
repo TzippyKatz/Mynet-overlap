@@ -1,17 +1,17 @@
-import { useState } from "react";
 import type { FC } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import ContentLoader from "react-content-loader";
-import type { CreateUserPayload } from "@libs/types/user/userPayload.type.js";
-import { useCreateUser } from "./functions";
+import type { CreateUserPayload } from "@libs/types/user/userPayload.type";
 import { useStyles } from "./styles";
+import { isEmpty, trim } from "lodash/fp";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { userService } from "../../services/user/user.service";
+import { QUERY_KEYS } from "../../utils/queryKeys";
 
 const CreateUser: FC = () => {
   const classes = useStyles();
-  const { t } = useTranslation();
-  const createUserMutation = useCreateUser();
-  const [isCreated, setIsCreated] = useState(false);
+  const { t } = useTranslation("translation", { keyPrefix: "createUser" });
 
   const {
     register,
@@ -25,43 +25,49 @@ const CreateUser: FC = () => {
     },
   });
 
-  const onSubmit = (data: CreateUserPayload) => {
-    setIsCreated(false);
+  const queryClient = useQueryClient();
 
-    createUserMutation.mutate(
-      {
-        username: data.username.trim(),
-        displayedName: data.displayedName.trim(),
-      },
-      {
-        onSuccess: () => {
-          reset();
-          setIsCreated(true);
-        },
-      },
-    );
+  const {
+    mutate: create,
+    isError,
+    isPending,
+    isSuccess,
+    error,
+  } = useMutation({
+    mutationFn: userService.createUser,
+    onSuccess: () => {
+      reset();
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.USERS });
+    },
+  });
+
+  const onSubmit = ({ username, displayedName }: CreateUserPayload): void => {
+    create({
+      username: trim(username),
+      displayedName: trim(displayedName),
+    });
   };
 
   return (
-    <main className={classes.container}>
-      <h1 className={classes.title}>{t("createUser.title")}</h1>
+    <div className={classes.createUser}>
+      <h1 className={classes.title}>{t("title")}</h1>
 
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.field}>
           <label className={classes.label} htmlFor="username">
-            {t("createUser.username")}
+            {t("username")}
           </label>
 
           <input
             id="username"
             className={`${classes.input} ${
-              errors.username ? classes.inputError : ""
+              errors.username && classes.inputError
             }`}
             autoComplete="username"
             {...register("username", {
-              required: t("createUser.usernameRequired"),
+              required: t("usernameRequired"),
               validate: (value) =>
-                value.trim().length > 0 || t("createUser.usernameRequired"),
+                !isEmpty(trim(value)) || t("usernameRequired"),
             })}
             aria-invalid={Boolean(errors.username)}
           />
@@ -72,19 +78,18 @@ const CreateUser: FC = () => {
         </div>
         <div className={classes.field}>
           <label className={classes.label} htmlFor="displayedName">
-            {t("createUser.displayedName")}
+            {t("displayedName")}
           </label>
 
           <input
             id="displayedName"
             className={`${classes.input} ${
-              errors.displayedName ? classes.inputError : ""
+              errors.displayedName && classes.inputError
             }`}
             {...register("displayedName", {
-              required: t("createUser.displayedNameRequired"),
+              required: t("displayedNameRequired"),
               validate: (value) =>
-                value.trim().length > 0 ||
-                t("createUser.displayedNameRequired"),
+                !isEmpty(trim(value)) || t("displayedNameRequired"),
             })}
             aria-invalid={Boolean(errors.displayedName)}
           />
@@ -94,29 +99,23 @@ const CreateUser: FC = () => {
           )}
         </div>
 
-        {createUserMutation.isError && (
+        {isError && (
           <p className={classes.serverError} role="alert">
-            {createUserMutation.error.message || t("createUser.createError")}
+            {error.message || t("createError")}
           </p>
         )}
 
-        {isCreated && (
+        {isSuccess && (
           <p className={classes.success} role="status">
-            {t("createUser.createSuccess")}
+            {t("createSuccess")}
           </p>
         )}
 
-        <button
-          className={classes.button}
-          type="submit"
-          disabled={createUserMutation.isPending}
-        >
-          {createUserMutation.isPending
-            ? t("createUser.creating")
-            : t("createUser.submit")}
+        <button className={classes.button} type="submit" disabled={isPending}>
+          {isPending ? t("creating") : t("submit")}
         </button>
 
-        {createUserMutation.isPending && (
+        {isPending && (
           <ContentLoader
             speed={1.5}
             width="100%"
@@ -129,7 +128,7 @@ const CreateUser: FC = () => {
           </ContentLoader>
         )}
       </form>
-    </main>
+    </div>
   );
 };
 
