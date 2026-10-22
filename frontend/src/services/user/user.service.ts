@@ -2,20 +2,24 @@ import type { CreateUserPayload } from "@libs/types/user/userPayload.type.js";
 import type { User } from "@libs/types/user/user.type.js";
 import { userAxios } from "../axios.js";
 
-export const createUser = async (payload: CreateUserPayload): Promise<User> => {
-  const response = await userAxios.post<User>("/users", payload);
+const api = "api/user-service";
 
-  return response.data;
-};
+export const userService = {
+  createUser: async (payload: CreateUserPayload): Promise<User> => {
+    const response = await userAxios.post<User>(`${api}/users`, payload);
 
-export const getUsers = async (): Promise<User[]> => {
-  const response = await userAxios.get<User[]>("/users");
+    return response.data;
+  },
 
-  return response.data;
-};
+  getUsers: async (): Promise<User[]> => {
+    const response = await userAxios.get<User[]>(`${api}/users`);
 
-export const getUserById = async (id: string): Promise<User> => {
-  const response = await userAxios.get<User>(`/users/${id}`);
+    return response.data;
+  },
 
-  return response.data;
+  getUserById: async (id: string): Promise<User> => {
+    const response = await userAxios.get<User>(`${api}/users/${id}`);
+
+    return response.data;
+  },
 };

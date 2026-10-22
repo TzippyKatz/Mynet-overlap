@@ -5,35 +5,39 @@ import type {
 import type { Post } from "@libs/types/content/post.type";
 import { contentAxios } from "../axios.js";
 
-export const createPost = async (payload: CreatePostPayload): Promise<Post> => {
-  const response = await contentAxios.post<Post>("/posts", payload);
+const api = "api/content-service";
 
-  return response.data;
-};
+export const contentService = {
+  createPost: async (payload: CreatePostPayload): Promise<Post> => {
+    const response = await contentAxios.post<Post>(`${api}/posts`, payload);
 
-export const getPosts = async (): Promise<Post[]> => {
-  const response = await contentAxios.get<Post[]>("/posts");
+    return response.data;
+  },
 
-  return response.data;
-};
+  getPosts: async (): Promise<Post[]> => {
+    const response = await contentAxios.get<Post[]>(`${api}/posts`);
 
-export const getPostById = async (id: string): Promise<Post> => {
-  const response = await contentAxios.get<Post>(`/posts/${id}`);
+    return response.data;
+  },
 
-  return response.data;
-};
+  getPostById: async (id: string): Promise<Post> => {
+    const response = await contentAxios.get<Post>(`${api}/posts/${id}`);
 
-export const updatePost = async (
-  id: string,
-  payload: UpdatePostPayload,
-): Promise<Post> => {
-  const response = await contentAxios.put<Post>(`/posts/${id}`, payload);
+    return response.data;
+  },
 
-  return response.data;
-};
+  updatePost: async (id: string, payload: UpdatePostPayload): Promise<Post> => {
+    const response = await contentAxios.put<Post>(
+      `${api}/posts/${id}`,
+      payload,
+    );
 
-export const deletePost = async (id: string): Promise<Post> => {
-  const response = await contentAxios.delete<Post>(`/posts/${id}`);
+    return response.data;
+  },
 
-  return response.data;
+  deletePost: async (id: string): Promise<Post> => {
+    const response = await contentAxios.delete<Post>(`${api}/posts/${id}`);
+
+    return response.data;
+  },
 };
