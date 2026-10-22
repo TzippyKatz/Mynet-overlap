@@ -1,14 +1,6 @@
 import { type Document, model, Schema } from "mongoose";
-import { MAX_TEXT_LENGTH } from "../../libs/consts.js";
-
-export type Post = {
-  postName: string;
-  userId: Schema.Types.ObjectId;
-  text: string;
-  media?: string;
-  likes?: number;
-  createdAt: Date;
-};
+import { MAX_TEXT_LENGTH } from "@libs/consts/post.js";
+import type { Post } from "@libs/Types/content/post.type.js";
 
 const postSchema = new Schema(
   {
@@ -16,6 +8,7 @@ const postSchema = new Schema(
       type: String,
       required: true,
       index: true,
+      trim: true,
     },
     userId: {
       type: Schema.Types.ObjectId,
@@ -25,6 +18,7 @@ const postSchema = new Schema(
     text: {
       type: String,
       required: true,
+      trim: true,
       maxlength: MAX_TEXT_LENGTH,
     },
     media: {
