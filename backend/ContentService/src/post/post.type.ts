@@ -5,4 +5,6 @@ export type CreatePostPayload = Pick<
   "userId" | "postName" | "text" | "media"
 >;
 
-export type UpdatePostPayload = Pick<Post, "postName" | "text" | "media">;
+export type UpdatePostPayload = Partial<
+  Pick<Post, "postName" | "text" | "media">
+>;

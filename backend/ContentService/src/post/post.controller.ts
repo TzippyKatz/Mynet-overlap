@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import { postManager } from "./post.manager.js";
-import type { UpdatePostPayload } from "../types/post.type.js";
+import type { UpdatePostPayload } from "./post.type.js";
 
 export const postController = {
   create: async (req: Request, res: Response): Promise<void> => {

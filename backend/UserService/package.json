@@ -11,7 +11,6 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@types/joi": "^17.2.2",
     "dotenv": "^18.0.7",
     "express": "^5.3.0",
     "jayson": "^5.0.0",
@@ -19,6 +18,7 @@
     "mongoose": "^9.11.2"
   },
   "devDependencies": {
+    "@types/joi": "^17.2.2",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.5",
     "tsx": "^4.23.15",

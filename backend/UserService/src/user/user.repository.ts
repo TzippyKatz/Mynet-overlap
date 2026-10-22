@@ -1,4 +1,4 @@
-import type { CreateUserPayload } from "@libs/types/user/userPayload.js";
+import type { CreateUserPayload } from "./user.type.js";
 import type { User } from "@libs/Types/user/user.type.js";
 import { userModel } from "../models/user.model.js";
 

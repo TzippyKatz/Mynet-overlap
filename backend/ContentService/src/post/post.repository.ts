@@ -1,7 +1,7 @@
 import type {
   CreatePostPayload,
   UpdatePostPayload,
-} from "../types/post.type.js";
+} from "./post.type.js";
 import type { Post } from "@libs/Types/content/post.type.js";
 import { postModel } from "../models/post.model.js";
 
