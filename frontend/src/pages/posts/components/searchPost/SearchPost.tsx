@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useStyles } from "./styles";
-import type { PostSearchProps } from "../../../utils/types/content/searchProps.type";
+import type { PostSearchProps } from "./searchProps.types";
 
 const SearchPost: FC<PostSearchProps> = ({ searchTerm, onSearchChange }) => {
   const classes = useStyles();

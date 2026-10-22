@@ -1,7 +1,7 @@
 import { createUseStyles } from "react-jss";
 
 export const useStyles = createUseStyles({
-  container: {
+  users: {
     width: "100%",
     maxWidth: "none",
     margin: 0,

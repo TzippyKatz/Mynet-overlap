@@ -1,27 +1,25 @@
 import { createUseStyles } from "react-jss";
 
 export const useStyles = createUseStyles({
-  "@global": {
-    ":root": {
-      colorScheme: "light",
-    },
-    "html, body": {
-      width: "100%",
-      minHeight: "100%",
-      margin: 0,
-      backgroundColor: "#f7f5f1",
-      color: "#282634",
-      fontFamily: '"Inter", "Segoe UI", Arial, sans-serif',
-    },
-    "#root": {
-      width: "100%",
-      maxWidth: "none",
-      minHeight: "100vh",
-      margin: 0,
-      textAlign: "left",
-      borderInline: "none",
-      boxSizing: "border-box",
-    },
+  ":root": {
+    colorScheme: "light",
+  },
+  "html, body": {
+    width: "100%",
+    minHeight: "100%",
+    margin: 0,
+    backgroundColor: "#f7f5f1",
+    color: "#282634",
+    fontFamily: '"Inter", "Segoe UI", Arial, sans-serif',
+  },
+  "#root": {
+    width: "100%",
+    maxWidth: "none",
+    minHeight: "100vh",
+    margin: 0,
+    textAlign: "left",
+    borderInline: "none",
+    boxSizing: "border-box",
   },
   navbar: {
     display: "flex",

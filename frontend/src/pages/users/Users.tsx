@@ -1,50 +1,68 @@
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 import ContentLoader from "react-content-loader";
-import { useUsers } from "./functions";
 import { useStyles } from "./styles";
+import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEYS } from "../../utils/queryKeys";
+import { userService } from "../../services/user/user.service";
+import { map, times } from "lodash/fp";
+import { USERS_SKELETON_COUNT } from "./const";
+import { isEmpty } from "lodash/fp";
 
 const Users: FC = () => {
   const classes = useStyles();
-  const { t } = useTranslation();
-  const { data: users = [], isLoading, isError } = useUsers();
+  const { t } = useTranslation("translation", { keyPrefix: "users" });
+  const {
+    data: users = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: QUERY_KEYS.USERS,
+    queryFn: userService.getUsers,
+  });
 
   return (
-    <main className={classes.container}>
-      <h1 className={classes.title}>{t("users.title")}</h1>
+    <div className={classes.users}>
+      <h1 className={classes.title}>{t("title")}</h1>
 
       {isLoading ? (
         <div className={classes.list}>
-          {[1, 2, 3].map((item) => (
-            <ContentLoader
-              key={item}
-              speed={1.5}
-              width="100%"
-              height={76}
-              viewBox="0 0 400 76"
-              backgroundColor="#f3f4f6"
-              foregroundColor="#e5e7eb"
-            >
-              <rect x="0" y="12" rx="4" ry="4" width="180" height="14" />
-              <rect x="0" y="38" rx="4" ry="4" width="260" height="10" />
-            </ContentLoader>
-          ))}
+          {times(
+            (item) => (
+              <ContentLoader
+                key={item}
+                speed={1.5}
+                width="100%"
+                height={76}
+                viewBox="0 0 400 76"
+                backgroundColor="#f3f4f6"
+                foregroundColor="#e5e7eb"
+              >
+                <rect x="0" y="12" rx="4" ry="4" width="180" height="14" />
+                <rect x="0" y="38" rx="4" ry="4" width="260" height="10" />
+              </ContentLoader>
+            ),
+            USERS_SKELETON_COUNT,
+          )}
         </div>
       ) : isError ? (
-        <p className={classes.error}>{t("users.loadError")}</p>
-      ) : users.length === 0 ? (
-        <p className={classes.message}>{t("users.empty")}</p>
+        <p className={classes.error}>{t("loadError")}</p>
+      ) : isEmpty(users) ? (
+        <p className={classes.message}>{t("empty")}</p>
       ) : (
         <div className={classes.list}>
-          {users.map((user) => (
-            <article key={user._id} className={classes.userCard}>
-              <h2 className={classes.displayedName}>{user.displayedName}</h2>
-              <p className={classes.username}>@{user.username}</p>
-            </article>
-          ))}
+          {map(
+            ({ _id, username, displayedName }) => (
+              <article key={_id} className={classes.userCard}>
+                <h2 className={classes.displayedName}>{displayedName}</h2>
+                <p className={classes.username}>@{username}</p>
+              </article>
+            ),
+            users,
+          )}
         </div>
       )}
-    </main>
+    </div>
   );
 };
 
