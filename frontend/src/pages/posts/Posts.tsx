@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { contentService } from "../../services/content/content.service";
 import { QUERY_KEYS } from "../../utils/queryKeys";
 import { times } from "lodash/fp";
-import { POSTS_SKELETON_COUNT } from "./const";
+import { POSTS_SKELETON_COUNT } from "./consts";
 import PostCard from "../../components/postCard";
 
 const Posts: FC = () => {
@@ -39,9 +39,9 @@ const Posts: FC = () => {
       {isLoading ? (
         <div className={classes.skeleton}>
           {times(
-            (item) => (
+            (index) => (
               <ContentLoader
-                key={item}
+                key={index}
                 speed={1.5}
                 width="100%"
                 height={120}

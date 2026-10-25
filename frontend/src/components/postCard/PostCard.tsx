@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useStyles } from "./styles";
-import type { PostCardProps } from "./props.types";
+import type { PostCardProps } from "./types";
 
-const PostCard: FC<PostCardProps> = ({ post }) => {
+const PostCard: FC<PostCardProps> = ({
+  post: { postName, media, text, likes },
+}) => {
   const classes = useStyles();
-  const { t } = useTranslation("translation", { keyPrefix: "POSTS" });
-
-  const { postName, media, text, likes } = post;
+  const { t } = useTranslation("translation", { keyPrefix: "POST_CARD" });
 
   return (
     <article className={classes.postCard}>

@@ -25,6 +25,10 @@ export const useStyles = createUseStyles({
     justifyContent: "center",
     backgroundColor: "#dfe0e2",
     color: "#6a9679",
+    "& img": {
+      width: "24px",
+      height: "24px",
+    },
   },
   userIcon: {
     width: "24px",

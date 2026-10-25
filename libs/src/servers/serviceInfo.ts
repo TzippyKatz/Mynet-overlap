@@ -5,7 +5,6 @@ export const serviceInfo = {
       rpcPort: 4000,
     },
     api: "/api/user-service",
-    env: "http://localhost:",
   },
   content: {
     local: {
@@ -13,6 +12,5 @@ export const serviceInfo = {
       rpcPort: 4001,
     },
     api: "/api/content-service",
-    env: "http://localhost:",
   },
 };

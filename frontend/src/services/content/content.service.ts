@@ -1,8 +1,8 @@
 import type {
   UpdatePostPayload,
   CreatePostPayload,
-} from " ../../../backend/ContentService/src/post/post.type.js";
-import type { Post } from "@libs/Types/content/post.type.js";
+} from "@libs/types/content/postPayload.type.js";
+import type { Post } from "@libs/types/content/post.type.js";
 import { contentAxios } from "../axios.js";
 
 export const contentService = {

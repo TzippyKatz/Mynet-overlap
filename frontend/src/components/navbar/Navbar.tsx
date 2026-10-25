@@ -18,7 +18,7 @@ const Navbar: FC = () => {
         className={classes.link}
         onClick={() => navigate("/users/create")}
       >
-        {t("CREATE_USER")}{" "}
+        {t("CREATE_USER")}
       </button>
 
       <button className={classes.link} onClick={() => navigate("/posts")}>

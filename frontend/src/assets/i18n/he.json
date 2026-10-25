@@ -15,14 +15,14 @@
     "CREATING": "יוצר משתמש...",
     "SUBMIT": "יצירת משתמש"
   },
+  "POST_CARD": {
+    "LIKES": "לייקים: {{count}}"
+  },
   "POSTS": {
     "TITLE": "פוסטים",
     "LOAD_ERROR": "טעינת הפוסטים נכשלה. נסו שוב.",
     "NO_SEARCH_RESULTS": "לא נמצאו פוסטים שמתאימים לחיפוש זה.",
     "EMPTY": "לא נמצאו פוסטים.",
-    "VIEW_MEDIA": "צפייה במדיה",
-    "LIKES_one": "{{count}} לייק",
-    "LIKES_other": "{{count}} לייקים",
     "SEARCH_PLACEHOLDER": "חיפוש לפי שם."
   },
   "CREATE_POST": {
@@ -32,7 +32,7 @@
     "MEDIA": "כתובת מדיה",
     "POST_NAME_REQUIRED": "יש להזין שם לפוסט.",
     "TEXT_REQUIRED": "יש להזין תוכן לפוסט.",
-    "TEXT_MAX_LENGTH": "יש להזין עד 200 אותיות.",
+    "TEXT_MAX_LENGTH": "יש להזין עד {{MAX_LENGTH}} אותיות.",
     "MEDIA_INVALID": "יש להזין כתובת URL תקינה.",
     "CREATE_ERROR": "יצירת הפוסט נכשלה. נסו שוב.",
     "CREATE_SUCCESS": "הפוסט נוצר בהצלחה.",
