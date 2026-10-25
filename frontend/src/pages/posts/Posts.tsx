@@ -9,6 +9,7 @@ import { contentService } from "../../services/content/content.service";
 import { QUERY_KEYS } from "../../utils/queryKeys";
 import { times } from "lodash/fp";
 import { POSTS_SKELETON_COUNT } from "./const";
+import PostCard from "../../components/postCard";
 
 const Posts: FC = () => {
   const classes = useStyles();
@@ -68,15 +69,8 @@ const Posts: FC = () => {
       ) : (
         <div className={classes.list}>
           {map(
-            ({ _id, postName, text, media, likes }) => (
-              <article key={_id} className={classes.postCard}>
-                <h2 className={classes.postName}>{postName}</h2>
-                {media && (
-                  <img className={classes.media} src={media} alt={postName} />
-                )}
-                <p className={classes.postText}>{text}</p>
-                <p className={classes.likes}>{t("LIKES", { count: likes })}</p>
-              </article>
+            (post) => (
+              <PostCard key={post._id} post={post} />
             ),
             filteredPosts,
           )}

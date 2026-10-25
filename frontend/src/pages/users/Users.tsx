@@ -8,6 +8,7 @@ import { userService } from "../../services/user/user.service";
 import { map, times } from "lodash/fp";
 import { USERS_SKELETON_COUNT } from "./const";
 import { isEmpty } from "lodash/fp";
+import UserCard from "../../components/userCard";
 
 const Users: FC = () => {
   const classes = useStyles();
@@ -52,11 +53,8 @@ const Users: FC = () => {
       ) : (
         <div className={classes.list}>
           {map(
-            ({ _id, username, displayedName }) => (
-              <article key={_id} className={classes.userCard}>
-                <h2 className={classes.displayedName}>{displayedName}</h2>
-                <p className={classes.username}>@{username}</p>
-              </article>
+            (user) => (
+              <UserCard key={user._id} user={user} />
             ),
             users,
           )}
