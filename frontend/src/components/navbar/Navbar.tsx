@@ -6,7 +6,7 @@ import { useStyles } from "./styles";
 const Navbar: FC = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { t } = useTranslation("translation", { keyPrefix: "navbar" });
+  const { t } = useTranslation("translation", { keyPrefix: "NAVBAR" });
 
   return (
     <nav className={classes.navbar}>
@@ -18,18 +18,18 @@ const Navbar: FC = () => {
         className={classes.link}
         onClick={() => navigate("/users/create")}
       >
-        {t("createUser")}
+        {t("CREATE_USER")}{" "}
       </button>
 
       <button className={classes.link} onClick={() => navigate("/posts")}>
-        {t("posts")}
+        {t("POSTS")}
       </button>
 
       <button
         className={classes.link}
         onClick={() => navigate("/posts/create")}
       >
-        {t("createPost")}
+        {t("CREATE_POST")}
       </button>
     </nav>
   );

@@ -11,7 +11,7 @@ const SearchPost: FC<PostSearchProps> = ({ searchTerm, onSearchChange }) => {
     <input
       className={classes.searchInput}
       type="search"
-      placeholder={t("posts.searchPlaceholder")}
+      placeholder={t("POSTS.SEARCH_PLACEHOLDER")}
       value={searchTerm}
       onChange={(event) => onSearchChange(event.target.value)}
     />

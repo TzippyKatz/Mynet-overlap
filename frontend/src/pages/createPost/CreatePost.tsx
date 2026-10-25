@@ -13,7 +13,7 @@ import { MAX_TEXT_LENGTH } from "@libs/consts/post.js";
 
 const CreatePost: FC<CreatePostProps> = ({ userId }) => {
   const classes = useStyles();
-  const { t } = useTranslation("translation", { keyPrefix: "createPost" });
+  const { t } = useTranslation("translation", { keyPrefix: "CREATE_POST" });
 
   const {
     register,
@@ -68,12 +68,12 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
 
   return (
     <div className={classes.createPost}>
-      <h1 className={classes.title}>{t("title")}</h1>
+      <h1 className={classes.title}>{t("TITLE")}</h1>
 
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.field}>
           <label className={classes.label} htmlFor="postName">
-            {t("postName")}
+            {t("POST_NAME")}
           </label>
 
           <input
@@ -84,7 +84,7 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
             {...register("postName", {
               required: t("postNameRequired"),
               validate: (value) =>
-                !isEmpty(trim(value)) || t("postNameRequired"),
+                !isEmpty(trim(value)) || t("POST_NAME_REQUIRED"),
             })}
           />
 
@@ -95,7 +95,7 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
 
         <div className={classes.field}>
           <label className={classes.label} htmlFor="text">
-            {t("text")}
+            {t("TEXT")}
           </label>
 
           <textarea
@@ -106,9 +106,10 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
             {...register("text", {
               required: t("textRequired"),
               validate: {
-                notEmpty: (value) => !isEmpty(trim(value)) || t("textRequired"),
+                notEmpty: (value) =>
+                  !isEmpty(trim(value)) || t("TEXT_REQUIRED"),
                 maxLength: (value) =>
-                  value.length <= MAX_TEXT_LENGTH || t("textMaxLength"),
+                  value.length <= MAX_TEXT_LENGTH || t("TEXT_MAX_LENGTH"),
               },
             })}
           />
@@ -120,7 +121,7 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
 
         <div className={classes.field}>
           <label className={classes.label} htmlFor="media">
-            {t("media")}
+            {t("MEDIA")}
           </label>
 
           <input
@@ -130,7 +131,7 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
             }`}
             {...register("media", {
               validate: (value) =>
-                !value || /^https?:\/\/.+/.test(value) || t("mediaInvalid"),
+                !value || /^https?:\/\/.+/.test(value) || t("MEDIA_INVALID"),
             })}
           />
 
@@ -141,18 +142,18 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
 
         {isError && (
           <p className={classes.serverError} role="alert">
-            {t("createError")}
+            {t("CREATE_ERROR")}
           </p>
         )}
 
         {isSuccess && (
           <p className={classes.success} role="status">
-            {t("createSuccess")}
+            {t("CREATE_SUCCESS")}
           </p>
         )}
 
         <button className={classes.button} type="submit" disabled={isPending}>
-          {isPending ? t("creating") : t("submit")}
+          {isPending ? t("CREATING") : t("SUBMIT")}
         </button>
 
         {isPending && (

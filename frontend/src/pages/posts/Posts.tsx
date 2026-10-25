@@ -12,7 +12,7 @@ import { POSTS_SKELETON_COUNT } from "./const";
 
 const Posts: FC = () => {
   const classes = useStyles();
-  const { t } = useTranslation("translation", { keyPrefix: "posts" });
+  const { t } = useTranslation("translation", { keyPrefix: "POSTS" });
   const {
     data: posts = [],
     isLoading,
@@ -31,7 +31,7 @@ const Posts: FC = () => {
 
   return (
     <div className={classes.posts}>
-      <h1 className={classes.title}>{t("title")}</h1>
+      <h1 className={classes.title}>{t("TITLE")}</h1>
 
       <SearchPost searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
@@ -59,11 +59,11 @@ const Posts: FC = () => {
         </div>
       ) : isError ? (
         <p className={classes.error} role="alert">
-          {t("loadError")}
+          {t("LOAD_ERROR")}
         </p>
       ) : isEmpty(filteredPosts) ? (
         <p className={classes.message}>
-          {trim(searchTerm) ? t("noSearchResults") : t("empty")}
+          {trim(searchTerm) ? t("NO_SEARCH_RESULTS") : t("EMPTY")}
         </p>
       ) : (
         <div className={classes.list}>
@@ -75,7 +75,7 @@ const Posts: FC = () => {
                   <img className={classes.media} src={media} alt={postName} />
                 )}
                 <p className={classes.postText}>{text}</p>
-                <p className={classes.likes}>{t("likes", { count: likes })}</p>
+                <p className={classes.likes}>{t("LIKES", { count: likes })}</p>
               </article>
             ),
             filteredPosts,

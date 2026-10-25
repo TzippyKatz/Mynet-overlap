@@ -11,7 +11,7 @@ import { isEmpty } from "lodash/fp";
 
 const Users: FC = () => {
   const classes = useStyles();
-  const { t } = useTranslation("translation", { keyPrefix: "users" });
+  const { t } = useTranslation("translation", { keyPrefix: "USERS" });
   const {
     data: users = [],
     isLoading,
@@ -23,7 +23,7 @@ const Users: FC = () => {
 
   return (
     <div className={classes.users}>
-      <h1 className={classes.title}>{t("title")}</h1>
+      <h1 className={classes.title}>{t("TITLE")}</h1>
 
       {isLoading ? (
         <div className={classes.list}>
@@ -46,9 +46,9 @@ const Users: FC = () => {
           )}
         </div>
       ) : isError ? (
-        <p className={classes.error}>{t("loadError")}</p>
+        <p className={classes.error}>{t("LOAD_ERROR")}</p>
       ) : isEmpty(users) ? (
-        <p className={classes.message}>{t("empty")}</p>
+        <p className={classes.message}>{t("EMPTY")}</p>
       ) : (
         <div className={classes.list}>
           {map(

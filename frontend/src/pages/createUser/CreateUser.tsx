@@ -11,7 +11,7 @@ import { QUERY_KEYS } from "../../utils/queryKeys";
 
 const CreateUser: FC = () => {
   const classes = useStyles();
-  const { t } = useTranslation("translation", { keyPrefix: "createUser" });
+  const { t } = useTranslation("translation", { keyPrefix: "CREATE_USER" });
 
   const {
     register,
@@ -50,12 +50,12 @@ const CreateUser: FC = () => {
 
   return (
     <div className={classes.createUser}>
-      <h1 className={classes.title}>{t("title")}</h1>
+      <h1 className={classes.title}>{t("TITLE")}</h1>
 
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.field}>
           <label className={classes.label} htmlFor="username">
-            {t("username")}
+            {t("USERNAME")}
           </label>
 
           <input
@@ -67,7 +67,7 @@ const CreateUser: FC = () => {
             {...register("username", {
               required: t("usernameRequired"),
               validate: (value) =>
-                !isEmpty(trim(value)) || t("usernameRequired"),
+                !isEmpty(trim(value)) || t("USERNAME_REQUIRED"),
             })}
             aria-invalid={Boolean(errors.username)}
           />
@@ -78,7 +78,7 @@ const CreateUser: FC = () => {
         </div>
         <div className={classes.field}>
           <label className={classes.label} htmlFor="displayedName">
-            {t("displayedName")}
+            {t("DISPLAYED_NAME")}
           </label>
 
           <input
@@ -89,7 +89,7 @@ const CreateUser: FC = () => {
             {...register("displayedName", {
               required: t("displayedNameRequired"),
               validate: (value) =>
-                !isEmpty(trim(value)) || t("displayedNameRequired"),
+                !isEmpty(trim(value)) || t("DISPLAYED_NAME_REQUIRED"),
             })}
             aria-invalid={Boolean(errors.displayedName)}
           />
@@ -101,18 +101,18 @@ const CreateUser: FC = () => {
 
         {isError && (
           <p className={classes.serverError} role="alert">
-            {error.message || t("createError")}
+            {error.message || t("CREATE_ERROR")}
           </p>
         )}
 
         {isSuccess && (
           <p className={classes.success} role="status">
-            {t("createSuccess")}
+            {t("CREATE_SUCCESS")}
           </p>
         )}
 
         <button className={classes.button} type="submit" disabled={isPending}>
-          {isPending ? t("creating") : t("submit")}
+          {isPending ? t("CREATING") : t("SUBMIT")}
         </button>
 
         {isPending && (
