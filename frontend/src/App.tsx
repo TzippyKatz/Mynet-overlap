@@ -5,12 +5,14 @@ import CreateUser from "./pages/createUser";
 import Navbar from "./components/navbar";
 import Posts from "./pages/posts";
 import Users from "./pages/users";
+import Login from "./pages/login";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate to="/posts" replace />} />
         <Route path="/users" element={<Users />} />
         <Route path="/users/create" element={<CreateUser />} />

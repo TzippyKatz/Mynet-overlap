@@ -44,5 +44,15 @@
     "CREATE_USER": "יצירת משתמש",
     "POSTS": "פוסטים",
     "CREATE_POST": "יצירת פוסט"
+  },
+  "LOGIN": {
+    "TITLE": "ברוכה השבה",
+    "USERNAME_PLACEHOLDER": "הזיני את שם המשתמש שלך",
+    "USERNAME_REQUIRED": "יש להזין שם משתמש.",
+    "LOGIN_ERROR": "ההתחברות נכשלה. בדקי את שם המשתמש ונסי שוב.",
+    "LOGGING_IN": "מתחברת...",
+    "SUBMIT": "התחברות",
+    "REGISTER_PROMPT": "אין לך חשבון?",
+    "REGISTER_LINK": "צרי משתמש חדש"
   }
 }

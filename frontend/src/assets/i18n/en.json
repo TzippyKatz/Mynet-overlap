@@ -44,5 +44,15 @@
     "CREATE_USER": "Create User",
     "POSTS": "Posts",
     "CREATE_POST": "Create Post"
+  },
+  "LOGIN": {
+    "TITLE": "Welcome back",
+    "USERNAME_PLACEHOLDER": "Enter your username",
+    "USERNAME_REQUIRED": "Username is required.",
+    "LOGIN_ERROR": "Login failed. Please check your username.",
+    "LOGGING_IN": "Logging in...",
+    "SUBMIT": "Login",
+    "REGISTER_PROMPT": "Don't have an account?",
+    "REGISTER_LINK": "Create one"
   }
 }
