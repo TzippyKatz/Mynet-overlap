@@ -16,7 +16,8 @@
     "SUBMIT": "יצירת משתמש"
   },
   "POST_CARD": {
-    "LIKES": "לייקים: {{count}}"
+    "LIKES": "לייקים: {{count}}",
+    "CONFIRM_DELETE": "האם אתה מעונין למחוק פוסט זה?"
   },
   "POSTS": {
     "TITLE": "פוסטים",
@@ -54,5 +55,20 @@
     "SUBMIT": "התחברות",
     "REGISTER_PROMPT": "אין לך חשבון?",
     "REGISTER_LINK": "צרי משתמש חדש"
+  },
+  "EDIT_POST": {
+    "TITLE": "עריכת פוסט",
+    "POST_NAME": "כותרת הפוסט",
+    "TEXT": "תוכן הפוסט",
+    "MEDIA": "קישור לתמונה",
+    "POST_NAME_REQUIRED": "יש להזין כותרת לפוסט",
+    "TEXT_REQUIRED": "יש להזין תוכן לפוסט",
+    "TEXT_MAX_LENGTH": "התוכן יכול להכיל עד {{MAX_LENGTH}} תווים",
+    "MEDIA_INVALID": "יש להזין קישור תקין שמתחיל ב-http:// או ב-https://",
+    "UPDATE_ERROR": "אירעה שגיאה בעדכון הפוסט",
+    "UPDATE_SUCCESS": "הפוסט עודכן בהצלחה",
+    "UPDATING": "מעדכנת...",
+    "SUBMIT": "שמירת שינויים",
+    "LOAD_ERROR": "עריכת הפוסט נכשלה. נסו שוב."
   }
 }

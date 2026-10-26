@@ -18,6 +18,26 @@ export const useStyles = createUseStyles({
       boxShadow: "0 14px 32px rgba(55, 75, 52, 0.10)",
     },
   },
+  actions: {
+    position: "absolute",
+    top: 8,
+    left: 8,
+    display: "flex",
+    gap: 8,
+  },
+  editButton: {
+    border: "none",
+    background: "transparent",
+    cursor: "pointer",
+    padding: 6,
+  },
+  deleteButton: {
+    border: "none",
+    background: "transparent",
+    color: "#dc2626",
+    cursor: "pointer",
+    padding: 6,
+  },
   postName: {
     margin: "0 0 18px",
     color: "#35483a",

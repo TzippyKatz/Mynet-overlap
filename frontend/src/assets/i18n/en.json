@@ -16,7 +16,8 @@
     "SUBMIT": "Create User"
   },
   "POST_CARD": {
-    "LIKES": "Likes: {{count}}"
+    "LIKES": "Likes: {{count}}",
+    "CONFIRM_DELETE": "Do you want to delete this post?"
   },
   "POSTS": {
     "TITLE": "Posts",
@@ -54,5 +55,20 @@
     "SUBMIT": "Login",
     "REGISTER_PROMPT": "Don't have an account?",
     "REGISTER_LINK": "Create one"
+  },
+  "EDIT_POST": {
+    "TITLE": "Edit post",
+    "POST_NAME": "Post title",
+    "TEXT": "Post content",
+    "MEDIA": "Image URL",
+    "POST_NAME_REQUIRED": "Post title is required",
+    "TEXT_REQUIRED": "Post content is required",
+    "TEXT_MAX_LENGTH": "Content must not exceed {{MAX_LENGTH}} characters",
+    "MEDIA_INVALID": "Enter a valid URL starting with http:// or https://",
+    "UPDATE_ERROR": "Failed to update the post",
+    "UPDATE_SUCCESS": "Post updated successfully",
+    "UPDATING": "Updating...",
+    "SUBMIT": "Save changes",
+    "LOAD_ERROR":"Failed to edit post. Please try again."
   }
 }
