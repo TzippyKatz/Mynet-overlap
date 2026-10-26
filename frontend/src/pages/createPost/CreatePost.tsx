@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import ContentLoader from "react-content-loader";
 import { useStyles } from "./styles";
-import type { CreatePostProps } from "./props.types";
+import type { CreatePostProps } from "./types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { contentService } from "../../services/content/content.service";
 import { QUERY_KEYS } from "../../utils/queryKeys";
@@ -36,7 +36,6 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
     isPending,
     isError,
     isSuccess,
-    error,
   } = useMutation({
     mutationFn: contentService.createPost,
     onSuccess: () => {
@@ -82,7 +81,6 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
               errors.postName ? classes.inputError : ""
             }`}
             {...register("postName", {
-              required: t("postNameRequired"),
               validate: (value) =>
                 !isEmpty(trim(value)) || t("POST_NAME_REQUIRED"),
             })}
@@ -104,12 +102,12 @@ const CreatePost: FC<CreatePostProps> = ({ userId }) => {
               errors.text ? classes.inputError : ""
             }`}
             {...register("text", {
-              required: t("textRequired"),
               validate: {
                 notEmpty: (value) =>
                   !isEmpty(trim(value)) || t("TEXT_REQUIRED"),
                 maxLength: (value) =>
-                  value.length <= MAX_TEXT_LENGTH || t("TEXT_MAX_LENGTH"),
+                  value.length <= MAX_TEXT_LENGTH ||
+                  t("TEXT_MAX_LENGTH", { MAX_LENGTH: MAX_TEXT_LENGTH }),
               },
             })}
           />

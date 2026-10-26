@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../../utils/queryKeys";
 import { userService } from "../../services/user/user.service";
 import { map, times } from "lodash/fp";
-import { USERS_SKELETON_COUNT } from "./const";
+import { USERS_SKELETON_COUNT } from "./consts";
 import { isEmpty } from "lodash/fp";
 import UserCard from "../../components/userCard";
 
@@ -29,9 +29,9 @@ const Users: FC = () => {
       {isLoading ? (
         <div className={classes.list}>
           {times(
-            (item) => (
+            (index) => (
               <ContentLoader
-                key={item}
+                key={index}
                 speed={1.5}
                 width="100%"
                 height={76}

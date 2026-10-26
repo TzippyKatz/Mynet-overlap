@@ -65,7 +65,6 @@ const CreateUser: FC = () => {
             }`}
             autoComplete="username"
             {...register("username", {
-              required: t("usernameRequired"),
               validate: (value) =>
                 !isEmpty(trim(value)) || t("USERNAME_REQUIRED"),
             })}
@@ -87,7 +86,6 @@ const CreateUser: FC = () => {
               errors.displayedName && classes.inputError
             }`}
             {...register("displayedName", {
-              required: t("displayedNameRequired"),
               validate: (value) =>
                 !isEmpty(trim(value)) || t("DISPLAYED_NAME_REQUIRED"),
             })}
