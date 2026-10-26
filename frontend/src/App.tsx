@@ -7,6 +7,7 @@ import Posts from "./pages/posts";
 import Users from "./pages/users";
 import Login from "./pages/login";
 import EditPost from "./components/postCard/components/editPost";
+import UserProfile from "./pages/userProfile";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" element={<Navigate to="/posts" replace />} />
         <Route path="/users" element={<Users />} />
         <Route path="/users/create" element={<CreateUser />} />
+        <Route path="/users/:userId" element={<UserProfile />} />
         <Route path="/posts" element={<Posts />} />
         <Route
           path="/posts/create"
