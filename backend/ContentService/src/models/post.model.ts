@@ -1,6 +1,6 @@
 import { type Document, model, Schema } from "mongoose";
 import { MAX_TEXT_LENGTH } from "@libs/consts/post.js";
-import type { Post } from "@libs/Types/content/post.type.js";
+import type { Post } from "@libs/types/content/post.type.js";
 
 const postSchema = new Schema(
   {

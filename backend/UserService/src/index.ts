@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import { config } from "./config.js";
 import appRouter from "./router.js";
@@ -6,6 +7,12 @@ import { rpcServer } from "./rpc.server.js";
 import { connectUserServiceDatabase } from "./connect/database.js";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  }),
+);
 
 app.use(express.json());
 

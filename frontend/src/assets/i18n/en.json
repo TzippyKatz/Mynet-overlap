@@ -1,0 +1,48 @@
+{
+  "USERS": {
+    "TITLE": "Users",
+    "EMPTY": "No users found.",
+    "LOAD_ERROR": "Failed to load users. Please try again."
+  },
+  "CREATE_USER": {
+    "TITLE": "Create User",
+    "DISPLAYED_NAME": "Display Name",
+    "USERNAME": "Username",
+    "DISPLAYED_NAME_REQUIRED": "Display name is required.",
+    "USERNAME_REQUIRED": "Username is required.",
+    "CREATE_ERROR": "Failed to create user. Please try again.",
+    "CREATE_SUCCESS": "User created successfully.",
+    "CREATING": "Creating...",
+    "SUBMIT": "Create User"
+  },
+  "POST_CARD": {
+    "LIKES": "Likes: {{count}}"
+  },
+  "POSTS": {
+    "TITLE": "Posts",
+    "LOAD_ERROR": "Failed to load posts. Please try again.",
+    "NO_SEARCH_RESULTS": "No posts found in this search.",
+    "EMPTY": "No posts found.",
+    "SEARCH_PLACEHOLDER": "Search by post name."
+  },
+  "CREATE_POST": {
+    "TITLE": "Create Post",
+    "POST_NAME": "Post Name",
+    "TEXT": "Text",
+    "MEDIA": "Media URL",
+    "POST_NAME_REQUIRED": "Post name is required.",
+    "TEXT_REQUIRED": "Text is required.",
+    "TEXT_MAX_LENGTH": "Text up to {{MAX_LENGTH}} letters.",
+    "MEDIA_INVALID": "Please enter a valid URL.",
+    "CREATE_ERROR": "Failed to create post. Please try again.",
+    "CREATE_SUCCESS": "Post created successfully.",
+    "CREATING": "Creating...",
+    "SUBMIT": "Create Post"
+  },
+  "NAVBAR": {
+    "USERS": "Users",
+    "CREATE_USER": "Create User",
+    "POSTS": "Posts",
+    "CREATE_POST": "Create Post"
+  }
+}

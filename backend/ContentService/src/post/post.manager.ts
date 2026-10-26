@@ -1,4 +1,4 @@
-import type { CreatePostPayload } from "./post.type.js";
+import type { CreatePostPayload } from "../../../../libs/src/types/content/postPayload.type.js";
 import isNil from "lodash/isNil.js";
 import { postRepository } from "./post.repository.js";
 import { userService } from "../rpc.client.js";
