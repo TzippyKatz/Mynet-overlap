@@ -1,0 +1,29 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #faf8f5;
+  color: #302d39;
+  font-family: Inter, Arial, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
