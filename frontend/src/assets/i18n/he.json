@@ -44,7 +44,9 @@
     "USERS": "משתמשים",
     "CREATE_USER": "יצירת משתמש",
     "POSTS": "פוסטים",
-    "CREATE_POST": "יצירת פוסט"
+    "CREATE_POST": "יצירת פוסט",
+    "DARK_MODE": "מצב כהה",
+    "LIGHT_MODE": "מצב בהיר"
   },
   "LOGIN": {
     "TITLE": "ברוכה השבה",

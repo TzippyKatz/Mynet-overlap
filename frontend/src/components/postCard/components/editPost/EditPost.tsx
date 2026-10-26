@@ -86,8 +86,8 @@ const EditPost = () => {
           width="100%"
           height={24}
           viewBox="0 0 400 24"
-          backgroundColor="#f3f4f6"
-          foregroundColor="#e5e7eb"
+          backgroundColor="var(--skeleton-bg)"
+          foregroundColor="var(--skeleton-fg)"
         >
           <rect x="0" y="6" rx="4" ry="4" width="400" height="12" />
         </ContentLoader>
@@ -204,8 +204,8 @@ const EditPost = () => {
               width="100%"
               height={24}
               viewBox="0 0 400 24"
-              backgroundColor="#f3f4f6"
-              foregroundColor="#e5e7eb"
+              backgroundColor="var(--skeleton-bg)"
+              foregroundColor="var(--skeleton-fg)"
             >
               <rect x="0" y="6" rx="4" ry="4" width="400" height="12" />
             </ContentLoader>

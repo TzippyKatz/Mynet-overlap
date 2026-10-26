@@ -44,7 +44,9 @@
     "USERS": "Users",
     "CREATE_USER": "Create User",
     "POSTS": "Posts",
-    "CREATE_POST": "Create Post"
+    "CREATE_POST": "Create Post",
+    "DARK_MODE": "Dark mode",
+    "LIGHT_MODE": "Light mode"
   },
   "LOGIN": {
     "TITLE": "Welcome back",

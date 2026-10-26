@@ -17,9 +17,10 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: #faf8f5;
-  color: #302d39;
+  background: var(--page-bg);
+  color: var(--text-primary);
   font-family: Inter, Arial, sans-serif;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 button,
