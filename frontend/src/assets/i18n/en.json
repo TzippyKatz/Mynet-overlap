@@ -16,7 +16,9 @@
     "SUBMIT": "Create User"
   },
   "POST_CARD": {
-    "LIKES": "Likes: {{count}}"
+    "LIKES": "Likes: {{count}}",
+    "CONFIRM_DELETE": "Do you want to delete this post?",
+    "VIEW_PDF": "Open PDF file"
   },
   "POSTS": {
     "TITLE": "Posts",
@@ -43,6 +45,38 @@
     "USERS": "Users",
     "CREATE_USER": "Create User",
     "POSTS": "Posts",
-    "CREATE_POST": "Create Post"
+    "CREATE_POST": "Create Post",
+    "DARK_MODE": "Dark mode",
+    "LIGHT_MODE": "Light mode"
+  },
+  "LOGIN": {
+    "TITLE": "Welcome back",
+    "USERNAME_PLACEHOLDER": "Enter your username",
+    "USERNAME_REQUIRED": "Username is required.",
+    "LOGIN_ERROR": "Login failed. Please check your username.",
+    "LOGGING_IN": "Logging in...",
+    "SUBMIT": "Login",
+    "REGISTER_PROMPT": "Don't have an account?",
+    "REGISTER_LINK": "Create one"
+  },
+  "EDIT_POST": {
+    "TITLE": "Edit post",
+    "POST_NAME": "Post title",
+    "TEXT": "Post content",
+    "MEDIA": "Image URL",
+    "POST_NAME_REQUIRED": "Post title is required",
+    "TEXT_REQUIRED": "Post content is required",
+    "TEXT_MAX_LENGTH": "Content must not exceed {{MAX_LENGTH}} characters",
+    "MEDIA_INVALID": "Enter a valid URL starting with http:// or https://",
+    "UPDATE_ERROR": "Failed to update the post",
+    "UPDATE_SUCCESS": "Post updated successfully",
+    "UPDATING": "Updating...",
+    "SUBMIT": "Save changes",
+    "LOAD_ERROR":"Failed to edit post. Please try again."
+  },
+  "USER_PROFILE": {
+    "LOADING": "Loading user...",
+    "LOAD_ERROR": "Failed to load user.",
+    "NOT_FOUND": "User not found."
   }
 }

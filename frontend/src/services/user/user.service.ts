@@ -1,8 +1,14 @@
-import type { CreateUserPayload } from "@libs/types/user/userPayload.type.js";
+import type { CreateUserPayload, LoginPayload, LoginResult } from "@libs/types/user/userPayload.type.js";
 import { userAxios } from "../axios.js";
 import type { User } from "@libs/types/user/user.type.js";
 
 export const userService = {
+  login: async (payload: LoginPayload): Promise<LoginResult> => {
+    const response = await userAxios.post("/auth/login", payload);
+
+    return response.data;
+  },
+
   createUser: async (payload: CreateUserPayload): Promise<User> => {
     const response = await userAxios.post("/users", payload);
 

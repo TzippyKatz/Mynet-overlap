@@ -36,8 +36,8 @@ const Users: FC = () => {
                 width="100%"
                 height={76}
                 viewBox="0 0 400 76"
-                backgroundColor="#f3f4f6"
-                foregroundColor="#e5e7eb"
+                backgroundColor="var(--skeleton-bg)"
+                foregroundColor="var(--skeleton-fg)"
               >
                 <rect x="0" y="12" rx="4" ry="4" width="180" height="14" />
                 <rect x="0" y="38" rx="4" ry="4" width="260" height="10" />
