@@ -2,23 +2,16 @@ import { createUseStyles } from "react-jss";
 
 export const useStyles = createUseStyles({
   login: {
-    minHeight: "80vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "48px 24px",
-    boxSizing: "border-box",
-    color: "var(--text-primary)",
-  },
-  form: {
     width: "100%",
     maxWidth: 440,
+    margin: "48px auto",
     padding: 40,
     boxSizing: "border-box",
     backgroundColor: "var(--surface-raised)",
     border: "1px solid var(--border)",
     borderRadius: 24,
     boxShadow: "var(--shadow)",
+    color: "var(--text-primary)",
   },
   title: {
     margin: "0 0 12px",
@@ -29,25 +22,11 @@ export const useStyles = createUseStyles({
     color: "var(--text-heading)",
     textAlign: "center",
   },
-  subtitle: {
-    margin: "0 0 32px",
-    color: "var(--text-secondary)",
-    fontSize: 16,
-    lineHeight: 1.7,
-    textAlign: "center",
-  },
-  field: {
+  input: {
     display: "flex",
     flexDirection: "column",
     gap: 10,
     marginBottom: 24,
-  },
-  label: {
-    fontSize: 14,
-    fontWeight: 700,
-    color: "var(--text-primary)",
-  },
-  input: {
     width: "100%",
     padding: "15px 16px",
     boxSizing: "border-box",

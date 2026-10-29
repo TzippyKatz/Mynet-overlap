@@ -1,16 +1,18 @@
 import jwt from "jsonwebtoken";
 import { userRepository } from "../user/user.repository.js";
-import type { LoginResult } from "@libs/types/user/userPayload.type.js";
+import type { LoginResult } from "@libs/types/user/user.type.js";
+import { config } from "../config.js";
+import isNil from "lodash/isNil.js";
 
 export const authManager = {
   login: async (username: string): Promise<LoginResult | null> => {
     const user = await userRepository.getByUsername(username);
 
-    if (!user) {
-      return null;
+    if (isNil(user)) {
+      throw new Error(`User with name: ${username} does not exist`);
     }
 
-    const secret = process.env.JWT_SECRET;
+    const secret = config.jwt.secret;
 
     if (!secret) {
       throw new Error("JWT_SECRET is not configured");
@@ -18,7 +20,7 @@ export const authManager = {
 
     const token = jwt.sign(
       {
-        userId: user._id.toString(),
+        userId: String(user._id),
         username: user.username,
       },
       secret,
@@ -28,9 +30,8 @@ export const authManager = {
     return {
       token,
       user: {
-        _id: user._id.toString(),
-        username: user.username,
-        displayedName: user.displayedName,
+        ...user,
+        _id: String(user._id),
       },
     };
   },

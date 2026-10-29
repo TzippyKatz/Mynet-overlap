@@ -9,7 +9,7 @@ import { AtSign, UserRound } from "lucide-react";
 
 const UserProfile: FC = () => {
   const classes = useStyles();
-  const { userId } = useParams<{ userId: string }>();
+  const { userId } = useParams();
   const { t } = useTranslation("translation", { keyPrefix: "USER_PROFILE" });
 
   const {
@@ -22,34 +22,29 @@ const UserProfile: FC = () => {
     enabled: Boolean(userId),
   });
 
-  if (isLoading) {
-    return <p>{t("LOADING")}</p>;
-  }
-
-  if (isError) {
-    return <p>{t("LOAD_ERROR")}</p>;
-  }
-
-  if (!user) {
-    return <p>{t("NOT_FOUND")}</p>;
-  }
-
   return (
-    <div className={classes.profile}>
-      <div className={classes.avatar}>
-        <UserRound size={52} strokeWidth={1.5} />
-      </div>
+    <>
+      {isLoading ? (
+        <p>{t("LOADING")}</p>
+      ) : isError ? (
+        <p>{t("LOAD_ERROR")}</p>
+      ) : !user ? (
+        <p>{t("NOT_FOUND")}</p>
+      ) : (
+        <div className={classes.profile}>
+          <UserRound className={classes.avatar} size={52} strokeWidth={1.5} />
 
-      <div className={classes.info}>
-        <h1 className={classes.displayedName}>{user.displayedName}</h1>
+          <div className={classes.info}>
+            <h1 className={classes.displayedName}>{user.displayedName}</h1>
 
-        <div className={classes.username}>
-          <AtSign size={16} />
-          <span>{user.username}</span>
+            <p className={classes.username}>
+              <AtSign size={16} />
+              <span>{user.username}</span>
+            </p>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
-
 export { UserProfile };

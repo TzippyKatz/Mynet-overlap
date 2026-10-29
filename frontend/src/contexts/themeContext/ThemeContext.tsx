@@ -4,11 +4,10 @@ import type { Theme, ThemeContextValue } from "./types";
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
-const getInitialTheme = (): Theme =>
-  localStorage.getItem("theme") === "dark" ? "dark" : "light";
-
 export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [theme, setTheme] = useState<Theme>(
+    localStorage.getItem("theme") === "dark" ? "dark" : "light",
+  );
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;

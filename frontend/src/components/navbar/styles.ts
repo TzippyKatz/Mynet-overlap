@@ -1,4 +1,5 @@
 import { createUseStyles } from "react-jss";
+import { down } from "../../utils/styles/breakpoints";
 
 export const useStyles = createUseStyles({
   navbar: {
@@ -10,7 +11,7 @@ export const useStyles = createUseStyles({
     backgroundColor: "var(--surface)",
     borderBottom: "1px solid var(--border)",
     boxShadow: "var(--nav-shadow)",
-    "@media (max-width: 700px)": {
+    [down("phone")]: {
       flexWrap: "wrap",
       gap: 4,
       padding: "12px 16px",
@@ -49,7 +50,7 @@ export const useStyles = createUseStyles({
     "&:hover": {
       backgroundColor: "var(--nav-hover)",
     },
-    "@media (max-width: 700px)": {
+    [down("phone")]: {
       marginLeft: 0,
     },
   },

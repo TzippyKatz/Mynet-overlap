@@ -4,8 +4,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useStyles } from "./styles";
-import type { LoginPayload } from "@libs/types/user/userPayload.type.js";
 import { userService } from "../../services/user/user.service";
+import type { LoginPayload } from "@libs/types/user/user.type";
 
 const Login: FC = () => {
   const classes = useStyles();
@@ -18,7 +18,11 @@ const Login: FC = () => {
     formState: { errors },
   } = useForm<LoginPayload>();
 
-  const loginMutation = useMutation({
+  const {
+    mutate: login,
+    isError,
+    isPending,
+  } = useMutation({
     mutationFn: userService.login,
     onSuccess: (result) => {
       localStorage.setItem("token", result.token);
@@ -29,54 +33,44 @@ const Login: FC = () => {
   });
 
   const onSubmit = (data: LoginPayload): void => {
-    loginMutation.mutate(data);
+    login(data);
   };
 
   return (
-    <main className={classes.login}>
-      <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-        <h1 className={classes.title}>{t("TITLE")}</h1>
+    <form className={classes.login} onSubmit={handleSubmit(onSubmit)}>
+      <h1 className={classes.title}>{t("TITLE")}</h1>
 
-        <div className={classes.field}>
-          <input
-            id="username"
-            className={classes.input}
-            type="text"
-            placeholder={t("USERNAME_PLACEHOLDER")}
-            {...register("username", {
-              required: t("USERNAME_REQUIRED"),
-            })}
-          />
-        </div>
+      <input
+        id="username"
+        className={classes.input}
+        type="text"
+        placeholder={t("USERNAME_PLACEHOLDER")}
+        {...register("username", {
+          required: t("USERNAME_REQUIRED"),
+        })}
+      />
 
-        {errors.username && (
-          <p className={classes.error}>{errors.username.message}</p>
-        )}
+      {errors.username && (
+        <p className={classes.error}>{errors.username.message}</p>
+      )}
 
-        {loginMutation.isError && (
-          <p className={classes.error}>{t("LOGIN_ERROR")}</p>
-        )}
+      {isError && <p className={classes.error}>{t("LOGIN_ERROR")}</p>}
 
+      <button className={classes.button} type="submit" disabled={isPending}>
+        {isPending ? t("LOGGING_IN") : t("SUBMIT")}
+      </button>
+
+      <p className={classes.message}>
+        {t("REGISTER_PROMPT")}{" "}
         <button
-          className={classes.button}
-          type="submit"
-          disabled={loginMutation.isPending}
+          className={classes.link}
+          type="button"
+          onClick={() => navigate("/users/create")}
         >
-          {loginMutation.isPending ? t("LOGGING_IN") : t("SUBMIT")}
+          {t("REGISTER_LINK")}
         </button>
-
-        <p className={classes.message}>
-          {t("REGISTER_PROMPT")}{" "}
-          <button
-            className={classes.link}
-            type="button"
-            onClick={() => navigate("/users/create")}
-          >
-            {t("REGISTER_LINK")}
-          </button>
-        </p>
-      </form>
-    </main>
+      </p>
+    </form>
   );
 };
 

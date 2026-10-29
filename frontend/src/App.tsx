@@ -6,8 +6,8 @@ import Navbar from "./components/navbar";
 import Posts from "./pages/posts";
 import Users from "./pages/users";
 import Login from "./pages/login";
-import EditPost from "./components/postCard/components/editPost";
 import UserProfile from "./pages/userProfile";
+import EditPost from "./pages/editPost";
 
 const App = () => {
   return (
@@ -24,7 +24,7 @@ const App = () => {
           path="/posts/create"
           element={<CreatePost userId="6ad74a34e2ed6222b88b9ec5" />}
         />
-        <Route path="/posts/edit/:id" element={<EditPost />} />{" "}
+        <Route path="/posts/edit/:id" element={<EditPost />} />
       </Routes>
     </BrowserRouter>
   );

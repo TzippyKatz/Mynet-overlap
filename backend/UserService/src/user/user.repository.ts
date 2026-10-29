@@ -1,6 +1,5 @@
-import type { CreateUserPayload } from "@libs/types/user/userPayload.type.js";
 import { userModel } from "../models/user.model.js";
-import type { User } from "@libs/types/user/user.type.js";
+import type { CreateUserPayload, User } from "@libs/types/user/user.type.js";
 
 export const userRepository = {
   create: async (user: CreateUserPayload): Promise<User> =>

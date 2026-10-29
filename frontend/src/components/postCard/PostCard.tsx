@@ -1,6 +1,12 @@
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { ExternalLink, FileText, Pencil, Trash2, UserRound } from "lucide-react";
+import {
+  ExternalLink,
+  FileText,
+  Pencil,
+  Trash2,
+  UserRound,
+} from "lucide-react";
 import { useStyles } from "./styles";
 import type { PostCardProps } from "./types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -8,9 +14,11 @@ import { contentService } from "../../services/content/content.service";
 import { QUERY_KEYS } from "../../utils/queryKeys";
 import { useNavigate } from "react-router-dom";
 import { userService } from "../../services/user/user.service";
+import { endsWith, filter, first, flow, last, split, toLower } from "lodash/fp";
+import type { Post } from "@libs/types/content/post.type";
 
 const PostCard: FC<PostCardProps> = ({
-  post: { _id, userId, postName, media, text, likes },
+  post: { _id, userId, postName, media, text, likes = 0 },
 }) => {
   const classes = useStyles();
   const { t } = useTranslation("translation", { keyPrefix: "POST_CARD" });
@@ -30,14 +38,16 @@ const PostCard: FC<PostCardProps> = ({
   const { mutate: deletePost } = useMutation({
     mutationFn: contentService.deletePost,
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: QUERY_KEYS.POSTS,
-      });
+      queryClient.setQueryData(
+        QUERY_KEYS.POSTS,
+        (posts: Post[] | undefined) =>
+          posts && filter((post) => post._id !== _id, posts),
+      );
     },
   });
 
   const isPdf = media
-    ? new URL(media).pathname.toLowerCase().endsWith(".pdf")
+    ? endsWith(".pdf", toLower(new URL(media).pathname))
     : false;
 
   return (
@@ -48,9 +58,7 @@ const PostCard: FC<PostCardProps> = ({
           className={classes.user}
           onClick={() => navigate(`/users/${userId}`)}
         >
-          <div className={classes.avatar}>
-            <UserRound size={20} />
-          </div>
+          <UserRound className={classes.avatar} size={20} />
 
           <span>{user ? `#${user.displayedName}` : t("LOADING_USER")}</span>
         </button>
@@ -70,11 +78,9 @@ const PostCard: FC<PostCardProps> = ({
               type="button"
               aria-label={t("DELETE")}
               className={classes.deleteButton}
-              onClick={() => {
-                if (window.confirm(t("CONFIRM_DELETE"))) {
-                  deletePost(_id);
-                }
-              }}
+              onClick={() =>
+                window.confirm(t("CONFIRM_DELETE")) && deletePost(_id)
+              }
             >
               <Trash2 size={18} />
             </button>
@@ -96,7 +102,8 @@ const PostCard: FC<PostCardProps> = ({
 
             <span className={classes.pdfInfo}>
               <strong>
-                {media.split("/").pop()?.split("?")[0] || "PDF document"}
+                {flow(split("?"), first, split("/"), last)(media) ||
+                  "PDF document"}
               </strong>
               <small>{t("VIEW_PDF")}</small>
             </span>
