@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import ContentLoader from "react-content-loader";
@@ -31,7 +30,6 @@ const EditPost = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<UpdatePostPayload>({
     values: isNil(post)
@@ -95,7 +93,7 @@ const EditPost = () => {
             <rect x="0" y="6" rx="4" ry="4" width="400" height="12" />
           </ContentLoader>
         </div>
-      ) : isLoadError || !post ? (
+      ) : isLoadError || isNil(post) ? (
         <p className={classes.serverError} role="alert">
           {t("LOAD_ERROR")}
         </p>

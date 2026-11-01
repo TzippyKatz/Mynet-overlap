@@ -6,6 +6,7 @@ import { userService } from "../../services/user/user.service";
 import { QUERY_KEYS } from "../../utils/queryKeys";
 import { useStyles } from "./styles";
 import { AtSign, UserRound } from "lucide-react";
+import { isNil } from "lodash/fp";
 
 const UserProfile: FC = () => {
   const classes = useStyles();
@@ -28,7 +29,7 @@ const UserProfile: FC = () => {
         <p>{t("LOADING")}</p>
       ) : isError ? (
         <p>{t("LOAD_ERROR")}</p>
-      ) : !user ? (
+      ) : isNil(user) ? (
         <p>{t("NOT_FOUND")}</p>
       ) : (
         <div className={classes.profile}>
