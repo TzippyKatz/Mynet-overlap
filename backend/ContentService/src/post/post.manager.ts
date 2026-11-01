@@ -22,4 +22,6 @@ export const postManager = {
   update: postRepository.update,
 
   delete: postRepository.delete,
+
+  deleteByUserId: postRepository.deleteByUserId,
 };

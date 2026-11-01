@@ -24,4 +24,8 @@ export const postRepository = {
 
   delete: async (id: string): Promise<Post | null> =>
     await postModel.findByIdAndDelete(id),
+
+  deleteByUserId: async (userId: string): Promise<void> => {
+    await postModel.deleteMany({ userId });
+  },
 };

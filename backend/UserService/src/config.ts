@@ -4,7 +4,7 @@ import { serviceInfo } from "@libs/servers/serviceInfo.js";
 
 loadEnv({ path: fileURLToPath(new URL("../.env", import.meta.url)) });
 
-const { MONGO_URI, JWT_SECRET } = process.env;
+const { MONGO_URI, JWT_SECRET, CONTENT_SERVICE_RPC_HOST } = process.env;
 
 export const config = {
   db: {
@@ -15,6 +15,10 @@ export const config = {
   },
   rpc: {
     port: serviceInfo.user.local.rpcPort,
+  },
+  contentRpc: {
+    host: CONTENT_SERVICE_RPC_HOST ?? "localhost",
+    port: serviceInfo.content.local.rpcPort,
   },
   jwt: {
     secret: JWT_SECRET,

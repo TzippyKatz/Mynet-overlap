@@ -14,6 +14,7 @@ const postSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "users",
       required: true,
+      index: true,
     },
     text: {
       type: String,
@@ -39,5 +40,7 @@ const postSchema = new Schema(
     timestamps: { createdAt: true, updatedAt: false },
   },
 );
+
+postSchema.index({ createdAt: -1 });
 
 export const postModel = model<Post & Document>("posts", postSchema);
