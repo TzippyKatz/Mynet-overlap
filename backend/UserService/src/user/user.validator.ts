@@ -17,3 +17,11 @@ export const canGetUserById = Joi.object({
   }).required(),
   body: Joi.object({}),
 });
+
+export const canDeleteUserPosts = Joi.object({
+  query: Joi.object({}),
+  params: Joi.object({
+    username: Joi.string().trim().required(),
+  }).required(),
+  body: Joi.object({}),
+});

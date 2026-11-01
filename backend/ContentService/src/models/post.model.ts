@@ -40,4 +40,6 @@ const postSchema = new Schema(
   },
 );
 
+postSchema.index({ createdAt: -1 });
+
 export const postModel = model<Post & Document>("posts", postSchema);

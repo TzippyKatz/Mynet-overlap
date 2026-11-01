@@ -19,4 +19,8 @@ const posts = await content.getAllPosts();
 UserService methods: `createUser(username, displayedName)` and `getAllUsers()`.
 ContentService methods: `createPost(userId, postName, text, media?)`,
 `getAllPosts()`, `getPostById(id)`, `updatePost(id, postName?, text?, media?)`,
-and `deletePost(id)`.
+`deletePost(id)`, and `deletePostsByUserId(userId)` (used by UserService over
+JSON-RPC).
+
+The UserService REST API also supports
+`DELETE /api/user-service/users/:username/posts`.
