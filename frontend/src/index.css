@@ -1,25 +1,100 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  color-scheme: light;
+  --page-bg: #faf8f5;
+  --surface: #fffefa;
+  --surface-raised: #ffffff;
+  --surface-muted: #edf4e9;
+  --surface-avatar: #dfe0e2;
+  --text-primary: #282634;
+  --text-secondary: #6b6375;
+  --text-heading: #282634;
+  --text-accent: #51416f;
+  --border: #e9e2eb;
+  --border-muted: #dce8d6;
+  --shadow: 0 12px 38px rgba(50, 44, 61, 0.07);
+  --shadow-hover: 0 14px 32px rgba(55, 75, 52, 0.10);
+  --nav-shadow: 0 4px 20px rgba(50, 44, 61, 0.04);
+  --focus-border: #b7a6d2;
+  --focus-shadow: 0 0 0 4px rgba(183, 166, 210, 0.16);
+  --nav-hover: #edf4e9;
+  --nav-hover-text: #395543;
+  --post-border: #dce8d6;
+  --post-text: #35483a;
+  --post-muted-border: rgba(53, 72, 58, 0.14);
+  --accent-button: #d7c9eb;
+  --accent-button-hover: #cbb9e3;
+  --accent-button-text: #382e4b;
+  --login-button: #7963a8;
+  --login-button-hover: #66518f;
+  --login-button-text: #ffffff;
+  --danger: #a44555;
+  --danger-surface: #fff0f0;
+  --danger-border: #f1d6d9;
+  --danger-icon: #dc2626;
+  --success: #416447;
+  --success-surface: #eef5e9;
+  --success-border: #dbe8d3;
+  --link: #2563eb;
+  --placeholder: #918b99;
+  --avatar-accent: #6a9679;
+  --media-bg: #f3edf8;
+  --skeleton-bg: #f3f4f6;
+  --skeleton-fg: #e5e7eb;
+}
 
+ [data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #151821;
+  --surface: #202430;
+  --surface-raised: #242936;
+  --surface-muted: #29372f;
+  --surface-avatar: #343b49;
+  --text-primary: #e7eaf0;
+  --text-secondary: #b4bac8;
+  --text-heading: #f3f4f6;
+  --text-accent: #d0b7f1;
+  --border: #3a4050;
+  --border-muted: #405448;
+  --shadow: 0 12px 38px rgba(0, 0, 0, 0.28);
+  --shadow-hover: 0 14px 32px rgba(0, 0, 0, 0.35);
+  --nav-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+  --focus-border: #a88acb;
+  --focus-shadow: 0 0 0 4px rgba(168, 138, 203, 0.22);
+  --nav-hover: #2d3a33;
+  --nav-hover-text: #c4e0c2;
+  --post-border: #405448;
+  --post-text: #c4ddc8;
+  --post-muted-border: rgba(196, 221, 200, 0.2);
+  --accent-button: #55466e;
+  --accent-button-hover: #675582;
+  --accent-button-text: #f0eafa;
+  --login-button: #8069b2;
+  --login-button-hover: #917bc0;
+  --login-button-text: #ffffff;
+  --danger: #ff9da8;
+  --danger-surface: #42272f;
+  --danger-border: #68404a;
+  --danger-icon: #ff7b86;
+  --success: #b5d9a9;
+  --success-surface: #293a2d;
+  --success-border: #405c45;
+  --link: #9bbcff;
+  --placeholder: #9ba2b2;
+  --avatar-accent: #a5cfac;
+  --media-bg: #303040;
+  --skeleton-bg: #303543;
+  --skeleton-fg: #3a4050;
+}
+
+:root {
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+  color: var(--text-secondary);
+  background: var(--page-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -30,24 +105,8 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+* {
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 #root {
@@ -70,7 +129,7 @@ h1,
 h2 {
   font-family: var(--heading);
   font-weight: 500;
-  color: var(--text-h);
+  color: var(--text-heading);
 }
 
 h1 {
@@ -100,12 +159,12 @@ code,
   font-family: var(--mono);
   display: inline-flex;
   border-radius: 4px;
-  color: var(--text-h);
+  color: var(--text-heading);
 }
 
 code {
   font-size: 15px;
   line-height: 135%;
   padding: 4px 8px;
-  background: var(--code-bg);
+  background: var(--surface-muted);
 }

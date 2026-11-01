@@ -7,11 +7,11 @@ export const useStyles = createUseStyles({
     gap: "14px",
     padding: "16px 20px",
     borderRadius: "12px",
-    backgroundColor: "#ffffff",
-    border: "1px solid #e5e7eb",
+    backgroundColor: "var(--surface-raised)",
+    border: "1px solid var(--border)",
     transition: "box-shadow 0.2s ease, transform 0.2s ease",
     "&:hover": {
-      boxShadow: "0 4px 14px rgba(0, 0, 0, 0.06)",
+      boxShadow: "var(--shadow-hover)",
       transform: "translateY(-2px)",
     },
   },
@@ -23,8 +23,8 @@ export const useStyles = createUseStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#dfe0e2",
-    color: "#6a9679",
+    backgroundColor: "var(--surface-avatar)",
+    color: "var(--avatar-accent)",
     "& img": {
       width: "24px",
       height: "24px",
@@ -41,7 +41,7 @@ export const useStyles = createUseStyles({
   },
   displayedName: {
     margin: "0 0 10px",
-    color: "#35483a",
+    color: "var(--text-heading)",
     fontSize: 22,
     fontWeight: 750,
     lineHeight: 1.4,
@@ -50,7 +50,7 @@ export const useStyles = createUseStyles({
   },
   username: {
     margin: 0,
-    color: "#777180",
+    color: "var(--text-secondary)",
     fontSize: 14,
     lineHeight: 1.6,
     overflowWrap: "anywhere",

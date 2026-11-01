@@ -46,8 +46,8 @@ const Posts: FC = () => {
                 width="100%"
                 height={120}
                 viewBox="0 0 400 120"
-                backgroundColor="#f3f4f6"
-                foregroundColor="#e5e7eb"
+                backgroundColor="var(--skeleton-bg)"
+                foregroundColor="var(--skeleton-fg)"
               >
                 <rect x="0" y="8" rx="4" ry="4" width="220" height="16" />
                 <rect x="0" y="40" rx="4" ry="4" width="400" height="10" />

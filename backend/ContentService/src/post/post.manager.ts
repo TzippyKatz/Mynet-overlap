@@ -2,7 +2,7 @@ import type { CreatePostPayload } from "../../../../libs/src/types/content/postP
 import isNil from "lodash/isNil.js";
 import { postRepository } from "./post.repository.js";
 import { userService } from "../rpc.client.js";
-import type { Post } from "@libs/Types/content/post.type.js";
+import type { Post } from "@libs/types/content/post.type.js";
 
 export const postManager = {
   create: async (post: CreatePostPayload): Promise<Post> => {

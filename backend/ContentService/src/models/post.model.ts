@@ -24,7 +24,8 @@ const postSchema = new Schema(
     media: {
       type: String,
       validate: {
-        validator: (value: string) => /^https?:\/\/.+/.test(value),
+        validator: (value: string) =>
+          value === "" || /^https?:\/\/.+/.test(value),
         message: "media must be a valid URL",
       },
     },

@@ -16,7 +16,9 @@
     "SUBMIT": "יצירת משתמש"
   },
   "POST_CARD": {
-    "LIKES": "לייקים: {{count}}"
+    "LIKES": "לייקים: {{count}}",
+    "CONFIRM_DELETE": "האם אתה מעונין למחוק פוסט זה?",
+    "VIEW_PDF": "פתיחת קובץ PDF"
   },
   "POSTS": {
     "TITLE": "פוסטים",
@@ -43,6 +45,38 @@
     "USERS": "משתמשים",
     "CREATE_USER": "יצירת משתמש",
     "POSTS": "פוסטים",
-    "CREATE_POST": "יצירת פוסט"
+    "CREATE_POST": "יצירת פוסט",
+    "DARK_MODE": "מצב כהה",
+    "LIGHT_MODE": "מצב בהיר"
+  },
+  "LOGIN": {
+    "TITLE": "ברוכה השבה",
+    "USERNAME_PLACEHOLDER": "הזיני את שם המשתמש שלך",
+    "USERNAME_REQUIRED": "יש להזין שם משתמש.",
+    "LOGIN_ERROR": "ההתחברות נכשלה. בדקי את שם המשתמש ונסי שוב.",
+    "LOGGING_IN": "מתחברת...",
+    "SUBMIT": "התחברות",
+    "REGISTER_PROMPT": "אין לך חשבון?",
+    "REGISTER_LINK": "צרי משתמש חדש"
+  },
+  "EDIT_POST": {
+    "TITLE": "עריכת פוסט",
+    "POST_NAME": "כותרת הפוסט",
+    "TEXT": "תוכן הפוסט",
+    "MEDIA": "קישור לתמונה",
+    "POST_NAME_REQUIRED": "יש להזין כותרת לפוסט",
+    "TEXT_REQUIRED": "יש להזין תוכן לפוסט",
+    "TEXT_MAX_LENGTH": "התוכן יכול להכיל עד {{MAX_LENGTH}} תווים",
+    "MEDIA_INVALID": "יש להזין קישור תקין שמתחיל ב-http:// או ב-https://",
+    "UPDATE_ERROR": "אירעה שגיאה בעדכון הפוסט",
+    "UPDATE_SUCCESS": "הפוסט עודכן בהצלחה",
+    "UPDATING": "מעדכנת...",
+    "SUBMIT": "שמירת שינויים",
+    "LOAD_ERROR": "עריכת הפוסט נכשלה. נסו שוב."
+  },
+  "USER_PROFILE": {
+    "LOADING": "טוען משתמש...",
+    "LOAD_ERROR": "שגיאה בטעינת המשתמש.",
+    "NOT_FOUND": "המשתמש לא נמצא."
   }
 }

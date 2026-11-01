@@ -7,7 +7,7 @@ export const useStyles = createUseStyles({
     margin: 0,
     padding: "56px 56px",
     boxSizing: "border-box",
-    color: "#282634",
+    color: "var(--text-primary)",
   },
   title: {
     margin: "0 0 36px",
@@ -15,7 +15,7 @@ export const useStyles = createUseStyles({
     fontWeight: 800,
     lineHeight: 1.1,
     letterSpacing: -1.8,
-    color: "#282634",
+    color: "var(--text-heading)",
     textAlign: "center",
   },
   list: {
@@ -26,15 +26,15 @@ export const useStyles = createUseStyles({
   },
   message: {
     padding: "32px 0",
-    color: "#777180",
+    color: "var(--text-secondary)",
     fontSize: 16,
     lineHeight: 1.7,
   },
   error: {
     padding: 20,
-    color: "#9b4656",
-    backgroundColor: "#fff0f0",
-    border: "1px solid #f1d6d9",
+    color: "var(--danger)",
+    backgroundColor: "var(--danger-surface)",
+    border: "1px solid var(--danger-border)",
     borderRadius: 16,
   },
 });

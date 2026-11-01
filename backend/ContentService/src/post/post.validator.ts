@@ -35,7 +35,9 @@ export const canUpdatePost = Joi.object({
   body: Joi.object({
     postName: Joi.string().trim(),
     text: Joi.string().trim().max(MAX_TEXT_LENGTH),
-    media: Joi.string().uri({ scheme: ["http", "https"] }),
+    media: Joi.string()
+      .uri({ scheme: ["http", "https"] })
+      .allow(""),
   }).required(),
 });
 
