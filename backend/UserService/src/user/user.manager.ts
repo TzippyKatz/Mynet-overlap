@@ -16,6 +16,6 @@ export const userManager = {
       throw new Error(`User with username ${username} does not exist`);
     }
 
-    return contentService.deletePostsByUserId(user._id);
+    return await contentService.deletePostsByUserId(user._id);
   },
 };
